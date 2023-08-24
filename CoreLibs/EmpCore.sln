@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryStack", "QueryStack", "{3C5741C4-8BB4-4087-9E27-85F9468F82FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure", "Infrastructure\EmpCore.Persistence\EmpCore.Infrastructure.csproj", "{186197D0-2D1A-40D6-8043-A6E2DC09969F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure", "Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj", "{186197D0-2D1A-40D6-8043-A6E2DC09969F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Persistence.EntityFrameworkCore", "Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj", "{D9C171A5-25A3-4D73-839F-85015CF4BDC3}"
 EndProject
@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Api", "Presentation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Application", "Application\EmpCore.Application\EmpCore.Application.csproj", "{071D3AE6-354B-439D-BD61-8F7177DF9FFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure.MessageBus.CAP", "Infrastructure\EmpCore.Infrasctructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{82818B4F-5488-4CBA-9629-6AB80FD766FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure.MessageBus.CAP", "Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{82818B4F-5488-4CBA-9629-6AB80FD766FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Domain", "Domain\EmpCore.Domain\EmpCore.Domain.csproj", "{933657F1-1FDA-40C9-A2F2-AD750B40098D}"
 EndProject
