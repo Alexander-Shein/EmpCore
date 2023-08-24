@@ -1,13 +1,13 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.BusinessFailures;
+﻿using System.Collections.Immutable;
+using BlogPostManagementService.Domain.BlogPosts.BusinessFailures;
 using EmpCore.Domain;
-using System.Collections.Immutable;
 
-namespace BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
 public class PublishStatus : SingleValueObject<string>
 {
-    public static readonly PublishStatus Draft = new PublishStatus(nameof(Draft));
-    public static readonly PublishStatus Released = new PublishStatus(nameof(Released));
+    public static readonly PublishStatus Draft = new(nameof(Draft));
+    public static readonly PublishStatus Released = new(nameof(Released));
 
     public static readonly IReadOnlyList<PublishStatus> List = new[] { Draft, Released }.ToImmutableList();
 

@@ -1,25 +1,25 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.BusinessFailures.EmbeddedResourse;
+﻿using BlogPostManagementService.Domain.BlogPosts.BusinessFailures.EmbeddedResourse;
 using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
-public class EmbeddedResourse : ValueObject
+public class EmbeddedResource : ValueObject
 {
     public Uri Url { get; }
     public string Caption { get; }
 
-    private EmbeddedResourse(Uri url, string caption)
+    private EmbeddedResource(Uri url, string caption)
     {
         Url = url;
         Caption = caption;
     }
 
-    public static Result<EmbeddedResourse> Create(Uri url, string caption)
+    public static Result<EmbeddedResource> Create(Uri url, string caption)
     {
-        if (url == null) return Result.Failure<EmbeddedResourse>(EmptyUrlFailure.Instance);
-        if (String.IsNullOrEmpty(caption)) return Result.Failure<EmbeddedResourse>(EmptyCaptionFailure.Instance);
+        if (url == null) return Result.Failure<EmbeddedResource>(EmptyUrlFailure.Instance);
+        if (String.IsNullOrEmpty(caption)) return Result.Failure<EmbeddedResource>(EmptyCaptionFailure.Instance);
 
-        return Result.Success(new EmbeddedResourse(url, caption.Trim()));
+        return Result.Success(new EmbeddedResource(url, caption.Trim()));
     }
 
     protected override IEnumerable<IComparable> GetEqualityComponents()

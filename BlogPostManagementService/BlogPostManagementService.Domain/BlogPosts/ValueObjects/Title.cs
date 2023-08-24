@@ -1,7 +1,7 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.BusinessFailures.Title;
+﻿using BlogPostManagementService.Domain.BlogPosts.BusinessFailures.Title;
 using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
 public class Title : SingleValueObject<string>
 {

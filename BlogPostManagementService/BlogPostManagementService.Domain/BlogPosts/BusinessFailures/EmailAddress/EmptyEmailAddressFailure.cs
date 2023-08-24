@@ -1,6 +1,6 @@
 ﻿using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.BusinessFailures.EmailAddress;
+namespace BlogPostManagementService.Domain.BlogPosts.BusinessFailures.EmailAddress;
 
 public class EmptyEmailAddressFailure : Failure
 {

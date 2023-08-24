@@ -1,6 +1,6 @@
 ﻿using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.BusinessFailures.Content;
+namespace BlogPostManagementService.Domain.BlogPosts.BusinessFailures.Content;
 
 public class ContentMaxLengthExceededFailure : Failure
 {

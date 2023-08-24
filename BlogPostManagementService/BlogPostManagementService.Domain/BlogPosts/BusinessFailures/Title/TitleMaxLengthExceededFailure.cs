@@ -1,6 +1,6 @@
 ﻿using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.BusinessFailures.Title;
+namespace BlogPostManagementService.Domain.BlogPosts.BusinessFailures.Title;
 
 public class TitleMaxLengthExceededFailure : Failure
 {

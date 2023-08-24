@@ -1,7 +1,7 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+﻿using BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.BusinessFailures;
+namespace BlogPostManagementService.Domain.BlogPosts.BusinessFailures;
 
 public class InvalidPublishStatusFailure : Failure
 {

@@ -1,11 +1,11 @@
 ﻿using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.BusinessFailures.EmbeddedResourse;
+namespace BlogPostManagementService.Domain.BlogPosts.BusinessFailures.EmbeddedResourse;
 
 public class EmptyUrlFailure : Failure
 {
     private const string ErrorCode = "empty_embedded_resourse_url";
-    private static readonly string ErrorMessage = "Embedded resourse url must not be empty.";
+    private static readonly string ErrorMessage = "Embedded resource url must not be empty.";
 
     public static readonly EmptyUrlFailure Instance = new();
 

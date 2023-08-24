@@ -1,7 +1,7 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.BusinessFailures.Content;
+﻿using BlogPostManagementService.Domain.BlogPosts.BusinessFailures.Content;
 using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
 public class Content : SingleValueObject<string>
 {

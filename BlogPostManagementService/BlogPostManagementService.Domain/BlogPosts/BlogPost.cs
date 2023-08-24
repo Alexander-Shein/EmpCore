@@ -1,7 +1,7 @@
-﻿using BlogPostManagementService.Domain.BlockPosts.ValueObjects;
+﻿using BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 using EmpCore.Domain;
 
-namespace BlogPostManagementService.Domain.BlockPosts;
+namespace BlogPostManagementService.Domain.BlogPosts;
 
 public class BlogPost : AggregateRoot<Guid>
 {
@@ -10,8 +10,8 @@ public class BlogPost : AggregateRoot<Guid>
     public PublishStatus PublishStatus { get; }
     public DateTime PublishDateTime { get; }
     public Content Content { get; }
-    public IReadOnlyList<EmbeddedResourse> EmbeddedResourses => _embeddedResourses.ToList();
-    private List<EmbeddedResourse> _embeddedResourses = new List<EmbeddedResourse>();
+    public IReadOnlyList<EmbeddedResource> EmbeddedResources => _embeddedResourses.ToList();
+    private List<EmbeddedResource> _embeddedResourses = new();
     public EmailAddress FeedbackEmailAddress { get; }
     public bool IsDeleted { get; }
     public DateTime CreatedAt { get; }
