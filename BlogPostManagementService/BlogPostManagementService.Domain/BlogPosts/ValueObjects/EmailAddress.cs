@@ -29,6 +29,6 @@ public class EmailAddress : SingleValueObject<string>
             return Result.Failure<EmailAddress>(new InvalidEmailAddressFailure(emailAddress));
         }
 
-        return Result.Success(new EmailAddress(emailAddress));
+        return Result.Success(new EmailAddress(emailAddress.ToUpperInvariant()));
     }
 }

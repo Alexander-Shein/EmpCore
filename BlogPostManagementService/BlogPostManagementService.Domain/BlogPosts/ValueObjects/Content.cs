@@ -3,30 +3,47 @@ using EmpCore.Domain;
 
 namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
-public class Content : SingleValueObject<string>
+public class Content : ValueObject
 {
     private const int MinLength = 1000;
     private const int MaxLenght = 100_000;
     private readonly IEnumerable<string> _blacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
 
-    private Content(string content) : base(content) { }
+    public string Text { get; }
+    public IReadOnlyList<EmbeddedResource> EmbeddedResources => _embeddedResources.ToList();
+    private List<EmbeddedResource> _embeddedResources;
 
-    public Result<Content> Create(string content)
+    private Content(string text, IEnumerable<EmbeddedResource> embeddedResources)
     {
-        if (string.IsNullOrWhiteSpace(content)) return Result.Failure<Content>(EmptyContentFailure.Instance);
-        content = content.Trim();
+        Text = text;
+        _embeddedResources = embeddedResources.ToList();
+    }
 
-        if (content.Length > MaxLenght)
-            return Result.Failure<Content>(new ContentMaxLengthExceededFailure(MaxLenght, content.Length));
+    public Result<Content> Create(string text, IEnumerable<EmbeddedResource> embeddedResources)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return Result.Failure<Content>(EmptyContentFailure.Instance);
+        text = text.Trim();
 
-        if (content.Length < MinLength)
-            return Result.Failure<Content>(new ContentTooShortFailure(MinLength, content.Length));
+        if (text.Length > MaxLenght)
+            return Result.Failure<Content>(new ContentMaxLengthExceededFailure(MaxLenght, text.Length));
+
+        if (text.Length < MinLength)
+            return Result.Failure<Content>(new ContentTooShortFailure(MinLength, text.Length));
 
         foreach (var blackListedWord in _blacklistedWorlds)
         {
-            content = content.Replace(blackListedWord, "***", StringComparison.OrdinalIgnoreCase);
+            text = text.Replace(blackListedWord, "***", StringComparison.OrdinalIgnoreCase);
         }
 
-        return Result.Success(new Content(content));
+        return Result.Success(new Content(text, embeddedResources));
+    }
+
+    protected override IEnumerable<IComparable> GetEqualityComponents()
+    {
+        yield return Text;
+        foreach (var embeddedResource in EmbeddedResources)
+        {
+            yield return embeddedResource;
+        }
     }
 }
