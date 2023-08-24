@@ -15,21 +15,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryStack", "QueryStack", "{3C5741C4-8BB4-4087-9E27-85F9468F82FF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Domain", "EmpCore.Domain\EmpCore.Domain.csproj", "{71A37A4D-D467-41C1-A23A-3E188FCD475D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure", "Infrastructure\EmpCore.Persistence\EmpCore.Infrastructure.csproj", "{186197D0-2D1A-40D6-8043-A6E2DC09969F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure", "EmpCore.Persistence\EmpCore.Infrastructure.csproj", "{186197D0-2D1A-40D6-8043-A6E2DC09969F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Persistence.EntityFrameworkCore", "Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj", "{D9C171A5-25A3-4D73-839F-85015CF4BDC3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Persistence.EntityFrameworkCore", "EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj", "{D9C171A5-25A3-4D73-839F-85015CF4BDC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.QueryStack.Dapper", "QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj", "{E834E1F9-95C4-487F-ADDA-DB1916F5BA1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.QueryStack.Dapper", "EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj", "{E834E1F9-95C4-487F-ADDA-DB1916F5BA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Crosscutting.DistributedCache", "Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj", "{E1245938-AB6A-43CB-A411-9BA206CCCB38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Crosscutting.DistributedCache", "EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj", "{E1245938-AB6A-43CB-A411-9BA206CCCB38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Api", "Presentation\EmpCore.Api\EmpCore.Api.csproj", "{FCC2BC9E-615B-4E84-821E-8B5CE0D7FAC4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Api", "EmpCore.Api\EmpCore.Api.csproj", "{FCC2BC9E-615B-4E84-821E-8B5CE0D7FAC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Application", "Application\EmpCore.Application\EmpCore.Application.csproj", "{071D3AE6-354B-439D-BD61-8F7177DF9FFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Application", "EmpCore.Application\EmpCore.Application.csproj", "{071D3AE6-354B-439D-BD61-8F7177DF9FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure.MessageBus.CAP", "Infrastructure\EmpCore.Infrasctructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{82818B4F-5488-4CBA-9629-6AB80FD766FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Infrastructure.MessageBus.CAP", "EmpCore.Infrasctructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{82818B4F-5488-4CBA-9629-6AB80FD766FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Domain", "Domain\EmpCore.Domain\EmpCore.Domain.csproj", "{933657F1-1FDA-40C9-A2F2-AD750B40098D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{71A37A4D-D467-41C1-A23A-3E188FCD475D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71A37A4D-D467-41C1-A23A-3E188FCD475D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71A37A4D-D467-41C1-A23A-3E188FCD475D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71A37A4D-D467-41C1-A23A-3E188FCD475D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{186197D0-2D1A-40D6-8043-A6E2DC09969F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{186197D0-2D1A-40D6-8043-A6E2DC09969F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{186197D0-2D1A-40D6-8043-A6E2DC09969F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,12 +65,15 @@ Global
 		{82818B4F-5488-4CBA-9629-6AB80FD766FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82818B4F-5488-4CBA-9629-6AB80FD766FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82818B4F-5488-4CBA-9629-6AB80FD766FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{933657F1-1FDA-40C9-A2F2-AD750B40098D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{933657F1-1FDA-40C9-A2F2-AD750B40098D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{933657F1-1FDA-40C9-A2F2-AD750B40098D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{933657F1-1FDA-40C9-A2F2-AD750B40098D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{71A37A4D-D467-41C1-A23A-3E188FCD475D} = {5487638C-DCC2-44F2-9CD7-1086762BBFF4}
 		{186197D0-2D1A-40D6-8043-A6E2DC09969F} = {15860654-66CA-4416-A2E5-E6F6A728C9B2}
 		{D9C171A5-25A3-4D73-839F-85015CF4BDC3} = {15860654-66CA-4416-A2E5-E6F6A728C9B2}
 		{E834E1F9-95C4-487F-ADDA-DB1916F5BA1C} = {3C5741C4-8BB4-4087-9E27-85F9468F82FF}
@@ -82,6 +81,7 @@ Global
 		{FCC2BC9E-615B-4E84-821E-8B5CE0D7FAC4} = {84C94709-C5F7-4FBB-88B7-4EFC63A43842}
 		{071D3AE6-354B-439D-BD61-8F7177DF9FFF} = {C8445A55-A20F-42E4-830A-1EFDC9848701}
 		{82818B4F-5488-4CBA-9629-6AB80FD766FB} = {15860654-66CA-4416-A2E5-E6F6A728C9B2}
+		{933657F1-1FDA-40C9-A2F2-AD750B40098D} = {5487638C-DCC2-44F2-9CD7-1086762BBFF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E084B3E1-AF53-4209-B2F4-8DB114E645A6}
