@@ -1,2 +1,2 @@
-# EmpCore
+# Solution Architecture Core Libs
 
