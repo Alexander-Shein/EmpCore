@@ -1,0 +1,29 @@
+using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost;
+using EmpCore.Application.Commands;
+using EmpCore.Domain;
+using MediatR;
+
+namespace BlogPostManagementService.Application.BlogPosts.Commands.UpdateBlogPost;
+
+public class UpdateBlogPostCommand : Command, IRequest<Result>
+{
+    public Guid UpdatedBy { get; }
+    public Guid BlogPostId { get; }
+    public string? Title { get; }
+    public string? Content { get; }
+    public IReadOnlyList<EmbeddedResourceDto>? EmbeddedResources { get; }
+
+    public UpdateBlogPostCommand(
+        Guid updatedBy,
+        Guid blogPostId,
+        string? title,
+        string? content,
+        IReadOnlyList<EmbeddedResourceDto>? embeddedResources)
+    {
+        UpdatedBy = updatedBy;
+        BlogPostId = blogPostId;
+        Title = title;
+        Content = content;
+        EmbeddedResources = embeddedResources;
+    }
+}

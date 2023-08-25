@@ -1,9 +1,10 @@
 ﻿using BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 using EmpCore.Domain;
+using MediatR;
 
 namespace BlogPostManagementService.Domain.BlogPosts.DomainEvents
 {
-    public class BlogPostPublishedDomainEvent : DomainEvent
+    public class BlogPostPublishedDomainEvent : DomainEvent, INotification
     {
         public Guid BlogPostId { get; }
         public Guid AuthorId { get; }

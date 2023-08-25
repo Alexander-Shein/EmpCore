@@ -12,8 +12,18 @@ public class BlogPostDomainRepository : IBlogPostDomainRepository
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
     }
 
+    public async Task<BlogPost?> GetByIdAsync(Guid blogPostId)
+    {
+        return await _dbContext.FindAsync<BlogPost>(blogPostId).ConfigureAwait(false);
+    }
+
     public void Save(BlogPost blogPost)
     {
         _dbContext.Add(blogPost);
+    }
+
+    public void Update(BlogPost blogPost)
+    {
+        _dbContext.Update(blogPost);
     }
 }
