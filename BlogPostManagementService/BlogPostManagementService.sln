@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Persistence.EntityF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Infrastructure.MessageBus.CAP", "..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{C870BB0C-2F3C-44F1-9F3B-60C8BBBDB15E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogPostManagementService.Persistence", "BlogPostManagementService.Persistence\BlogPostManagementService.Persistence.csproj", "{D4D4575A-AFC0-477D-A88B-CE9C4A8643A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{C870BB0C-2F3C-44F1-9F3B-60C8BBBDB15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C870BB0C-2F3C-44F1-9F3B-60C8BBBDB15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C870BB0C-2F3C-44F1-9F3B-60C8BBBDB15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D4575A-AFC0-477D-A88B-CE9C4A8643A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D4575A-AFC0-477D-A88B-CE9C4A8643A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D4575A-AFC0-477D-A88B-CE9C4A8643A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D4575A-AFC0-477D-A88B-CE9C4A8643A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ public class EmailAddress : SingleValueObject<string>
     {
     }
 
-    public Result<EmailAddress> Create(string emailAddress)
+    public static Result<EmailAddress> Create(string emailAddress)
     {
         if (String.IsNullOrWhiteSpace(emailAddress)) return Result.Failure<EmailAddress>(EmptyEmailAddressFailure.Instance);
         emailAddress = emailAddress.Trim();

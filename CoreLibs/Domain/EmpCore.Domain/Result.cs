@@ -77,4 +77,10 @@ public class Result<T> : Result
             return _value;
         }
     }
+    
+    public static implicit operator T(Result<T> result) => result == null ? default : result.Value;
+    public static implicit operator Result<T>(T value) => Success(value);
+        
+    public static implicit operator Result<T>(List<Failure> failures) => Failure<T>(failures);
+    public static implicit operator Result<T>(Failure[] failures) => Failure<T>(failures);
 }

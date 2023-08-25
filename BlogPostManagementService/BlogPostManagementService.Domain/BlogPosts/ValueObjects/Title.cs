@@ -11,7 +11,7 @@ public class Title : SingleValueObject<string>
 
     private Title(string title) : base(title) { }
 
-    public Result<Title> Create(string title)
+    public static Result<Title> Create(string title)
     {
         if (string.IsNullOrWhiteSpace(title)) return Result.Failure<Title>(EmptyTitleFailure.Instance);
         title = title.Trim();

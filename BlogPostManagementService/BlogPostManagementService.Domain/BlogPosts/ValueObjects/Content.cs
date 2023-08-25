@@ -7,7 +7,7 @@ public class Content : ValueObject
 {
     private const int MinLength = 1000;
     private const int MaxLenght = 100_000;
-    private readonly IEnumerable<string> _blacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
+    private static readonly IEnumerable<string> _blacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
 
     public string Text { get; }
     public IReadOnlyList<EmbeddedResource> EmbeddedResources => _embeddedResources.ToList();
@@ -19,7 +19,7 @@ public class Content : ValueObject
         _embeddedResources = embeddedResources.ToList();
     }
 
-    public Result<Content> Create(string text, IEnumerable<EmbeddedResource> embeddedResources)
+    public static Result<Content> Create(string text, IEnumerable<EmbeddedResource> embeddedResources)
     {
         if (string.IsNullOrWhiteSpace(text)) return Result.Failure<Content>(EmptyContentFailure.Instance);
         text = text.Trim();
