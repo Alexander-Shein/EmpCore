@@ -1,3 +1,4 @@
+using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost.DTOs;
 using BlogPostManagementService.Domain.BlogPosts;
 using BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 using BlogPostManagementService.Persistence.BlogPosts.DomainRepositories;

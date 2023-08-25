@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentManagementService.WebApi", "CommentManagementService.WebApi\CommentManagementService.WebApi.csproj", "{EBC5D7A1-C6AF-4974-BE86-D0B4D9E26D84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentManagementService.WebApi", "CommentManagementService.WebApi\CommentManagementService.WebApi.csproj", "{EBC5D7A1-C6AF-4974-BE86-D0B4D9E26D84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{F95C5E88-1B7A-44C5-9133-37E46F98893D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

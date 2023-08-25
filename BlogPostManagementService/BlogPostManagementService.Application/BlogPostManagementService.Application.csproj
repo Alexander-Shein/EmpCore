@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -7,8 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts.csproj" />
       <ProjectReference Include="..\..\CoreLibs\Application\EmpCore.Application\EmpCore.Application.csproj" />
       <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj" />
       <ProjectReference Include="..\BlogPostManagementService.Domain\BlogPostManagementService.Domain.csproj" />
       <ProjectReference Include="..\BlogPostManagementService.Persistence\BlogPostManagementService.Persistence.csproj" />
     </ItemGroup>

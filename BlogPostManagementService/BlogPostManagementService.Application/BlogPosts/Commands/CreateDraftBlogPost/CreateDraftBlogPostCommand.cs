@@ -1,3 +1,4 @@
+using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost.DTOs;
 using EmpCore.Application.Commands;
 using EmpCore.Domain;
 using MediatR;

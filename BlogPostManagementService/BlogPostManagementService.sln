@@ -37,6 +37,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Crosscutting.Distri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Api", "..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj", "{166C5A83-C08E-4938-B002-72864E0702D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPostManagementService.Contracts", "BlogPostManagementService.Contracts", "{C50FBFBD-16B3-498D-A931-661D7EC18025}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogPostManagementService.Contracts", "..\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts.csproj", "{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryStack", "QueryStack", "{14FB3960-0A46-4157-8178-6BD249396DA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.QueryStack.Dapper", "..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj", "{FA97B04A-16B9-4420-8A64-3094AC7FBF97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +95,14 @@ Global
 		{166C5A83-C08E-4938-B002-72864E0702D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{166C5A83-C08E-4938-B002-72864E0702D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{166C5A83-C08E-4938-B002-72864E0702D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA97B04A-16B9-4420-8A64-3094AC7FBF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA97B04A-16B9-4420-8A64-3094AC7FBF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA97B04A-16B9-4420-8A64-3094AC7FBF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA97B04A-16B9-4420-8A64-3094AC7FBF97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +120,9 @@ Global
 		{A2F03AF0-648B-414D-95CA-F1702D736CB3} = {9224AE5E-0166-4120-8994-B2F4C50D7C5C}
 		{B1A991E6-6554-4659-BD50-54E48862722D} = {A2F03AF0-648B-414D-95CA-F1702D736CB3}
 		{166C5A83-C08E-4938-B002-72864E0702D7} = {4C6ADE5E-2F29-4183-B214-8B6253F46F55}
+		{ABA82B84-E9C7-47B8-A6E6-ABC0AB1BA11B} = {C50FBFBD-16B3-498D-A931-661D7EC18025}
+		{14FB3960-0A46-4157-8178-6BD249396DA7} = {9224AE5E-0166-4120-8994-B2F4C50D7C5C}
+		{FA97B04A-16B9-4420-8A64-3094AC7FBF97} = {14FB3960-0A46-4157-8178-6BD249396DA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D72B9BE5-2E4C-48C2-AB7F-6B8E7BB1892C}

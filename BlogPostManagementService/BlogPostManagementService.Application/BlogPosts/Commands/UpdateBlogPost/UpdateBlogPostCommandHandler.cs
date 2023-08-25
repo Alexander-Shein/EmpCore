@@ -1,4 +1,4 @@
-﻿using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost;
+﻿using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost.DTOs;
 using BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 using BlogPostManagementService.Persistence.BlogPosts.DomainRepositories;
 using EmpCore.Application.ApplicationFailures;
