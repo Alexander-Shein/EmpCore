@@ -2,8 +2,9 @@
 {
     public class BlogPostPublishedEvent : EventBase
     {
+        public const string EventName = "BlogPostManagement.BlogPostPublished";
+        
         public Guid BlogPostId { get; }
-
         public Guid AuthorId { get; }
         public DateTime PublishDateTime { get; }
         public string FeedbackEmailAddress { get; }

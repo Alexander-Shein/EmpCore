@@ -28,7 +28,7 @@ public class PublishBlogPostCommandHandler : IRequestHandler<PublishBlogPostComm
         if (command == null) throw new ArgumentNullException(nameof(command));
 
         var blogPost = await _blogPostDomainRepository.GetByIdAsync(command.BlogPostId).ConfigureAwait(false); ;
-        if (blogPost == null) return Result.Failure(ResourseNotFoundFailure.Instance);
+        if (blogPost == null) return Result.Failure(ResourceNotFoundFailure.Instance);
 
         var result = blogPost.Publish(command.PublishedBy);
         if (result.IsFailure) return result;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 
-namespace EmpCore.Api.Middleware.ApiVersioning;
+namespace EmpCore.Api.Middleware.WebApiVersioning;
 
 public static class MvcOptionsExtensions
 {

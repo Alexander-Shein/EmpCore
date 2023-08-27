@@ -23,7 +23,7 @@ namespace BlogPostManagementService.Application.BlogPosts.DomainEvents
                 domainEvent.AuthorId,
                 DateTime.UtcNow);
 
-            await _messageBus.PublishAsync(@event, ct).ConfigureAwait(false);
+            await _messageBus.PublishAsync(BlogPostDeletedEvent.EventName, @event, ct).ConfigureAwait(false);
         }
     }
 }

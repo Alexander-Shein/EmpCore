@@ -10,8 +10,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BlogPosts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CoreLibs\Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj" />
+    <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj" />
+    <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj" />
+    <ProjectReference Include="..\BlogPostManagementService.Application\BlogPostManagementService.Application.csproj" />
   </ItemGroup>
 
 </Project>

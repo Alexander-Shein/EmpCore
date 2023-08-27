@@ -7,7 +7,7 @@ public class Content : ValueObject
 {
     private const int MinLength = 1000;
     private const int MaxLenght = 100_000;
-    private static readonly IEnumerable<string> _blacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
+    private static readonly IEnumerable<string> BlacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
 
     public string Text { get; }
     public IReadOnlyList<EmbeddedResource> EmbeddedResources => _embeddedResources.ToList();
@@ -30,7 +30,7 @@ public class Content : ValueObject
         if (text.Length < MinLength)
             return Result.Failure<Content>(new ContentTooShortFailure(MinLength, text.Length));
 
-        foreach (var blackListedWord in _blacklistedWorlds)
+        foreach (var blackListedWord in BlacklistedWorlds)
         {
             text = text.Replace(blackListedWord, "***", StringComparison.OrdinalIgnoreCase);
         }

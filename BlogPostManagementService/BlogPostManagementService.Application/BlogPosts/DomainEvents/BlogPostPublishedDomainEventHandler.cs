@@ -25,7 +25,7 @@ namespace BlogPostManagementService.Application.BlogPosts.DomainEvents
                 domainEvent.FeedbackEmailAddress,
                 DateTime.UtcNow);
 
-            await _messageBus.PublishAsync(@event, ct).ConfigureAwait(false);
+            await _messageBus.PublishAsync(BlogPostPublishedEvent.EventName, @event, ct).ConfigureAwait(false);
         }
     }
 }

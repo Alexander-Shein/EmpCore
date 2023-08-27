@@ -6,7 +6,7 @@ namespace EmpCore.Application.Middleware.Caching;
 
 public static class CachingPipelineServiceCollectionExtensions
 {
-    public static IServiceCollection AddCachingPipeline(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+    public static IServiceCollection AddCachingPipeline(this IServiceCollection services, params Assembly[] assemblies)
     {
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingPipelineBehavior<,>));
 

@@ -30,7 +30,7 @@ public class UpdateBlogPostCommandHandler : IRequestHandler<UpdateBlogPostComman
         if (command == null) throw new ArgumentNullException(nameof(command));
 
         var blogPost = await _blogPostDomainRepository.GetByIdAsync(command.BlogPostId).ConfigureAwait(false); ;
-        if (blogPost == null) return Result.Failure(ResourseNotFoundFailure.Instance);
+        if (blogPost == null) return Result.Failure(ResourceNotFoundFailure.Instance);
 
         Title? newTitle = null;
         if (command.Title != null)

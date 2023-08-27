@@ -2,6 +2,7 @@
 {
     public class BlogPostDeletedEvent : EventBase
     {
+        public const string EventName = "BlogPostManagement.BlogPostDeleted";
         public Guid BlogPostId { get; }
         public Guid AuthorId { get; }
 

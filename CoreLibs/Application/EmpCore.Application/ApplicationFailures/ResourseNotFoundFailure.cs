@@ -2,13 +2,13 @@
 
 namespace EmpCore.Application.ApplicationFailures
 {
-    public class ResourseNotFoundFailure : Failure
+    public class ResourceNotFoundFailure : Failure
     {
-        private const string ErrorCode = "resourse_not_found";
-        private const string ErrorMessage = "Resourse not found.";
+        private const string ErrorCode = "resource_not_found";
+        private const string ErrorMessage = "Resource not found.";
 
-        public static readonly ResourseNotFoundFailure Instance = new();
+        public static readonly ResourceNotFoundFailure Instance = new();
 
-        private ResourseNotFoundFailure() : base(ErrorCode, ErrorMessage) { }
+        private ResourceNotFoundFailure() : base(ErrorCode, ErrorMessage) { }
     }
 }

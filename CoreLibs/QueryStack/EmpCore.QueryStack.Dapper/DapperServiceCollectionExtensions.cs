@@ -4,10 +4,12 @@ namespace EmpCore.QueryStack.Dapper;
 
 public static class DapperServiceCollectionExtensions
 {
-    public static IServiceCollection AddConnectionFactory(this IServiceCollection services, string connectionString)
+    public static IServiceCollection AddConnectionFactory(
+        this IServiceCollection services,
+        string readOnlySqlConnectionString)
     {
         services
-            .AddSingleton(new ReadOnlyConnectionString(connectionString))
+            .AddSingleton(new ReadOnlyConnectionString(readOnlySqlConnectionString))
             .AddScoped<IConnectionFactory, SqlConnectionFactory>();
 
         return services;
