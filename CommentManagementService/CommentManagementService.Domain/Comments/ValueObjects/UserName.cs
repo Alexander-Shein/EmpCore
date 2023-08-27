@@ -9,7 +9,7 @@ public class UserName : SingleValueObject<string>
     private const int MaxLenght = 100;
     private const string NotAllowedCharacters = "\r\n";
 
-    private UserName(string useName) : base(useName?.Trim()) { }
+    private UserName(string value) : base(value?.Trim()) { }
 
     public static Result<UserName> Create(string useName)
     {

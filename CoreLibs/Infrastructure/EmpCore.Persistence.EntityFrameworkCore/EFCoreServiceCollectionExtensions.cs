@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using EmpCore.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmpCore.Persistence.EntityFrameworkCore;
@@ -14,6 +15,8 @@ public static class EFCoreServiceCollectionExtensions
         services
             .AddScoped(_ => new ApplicationDbContext(connectionString, persistenceAssembly))
             .AddScoped<IUnitOfWork, UnitOfWork>();
+
+        new ApplicationDbContext(connectionString, persistenceAssembly).Database.Migrate();
 
         return services;
     }

@@ -4,20 +4,20 @@ using MediatR;
 
 namespace CommentManagementService.Application.Comments.Commands.AddComment;
 
-public class AddCommentCommand : Command, IRequest<Result>
+public class AddCommentCommand : Command, IRequest<Result<long>>
 {
-    public Guid BlogPostId { get; }
+    public Guid PublishedBlogPostId { get; }
     public Guid CommentorId { get; }
     public string CommentorUserName { get; }
     public string Message { get; }
     
     public AddCommentCommand(
-        Guid blogPostId,
+        Guid publishedBlogPostId,
         Guid commentorId,
         string commentorUserName,
         string message)
     {
-        BlogPostId = blogPostId;
+        PublishedBlogPostId = publishedBlogPostId;
         CommentorId = commentorId;
         CommentorUserName = commentorUserName;
         Message = message;

@@ -22,19 +22,20 @@ SELECT TOP (1) [Id]
       ,[AuthorId]
       ,[Title]
       ,[Content]
+      ,[FeedbackEmailAddress]
       ,[PublishStatus]
       ,[PublishDateTime]
       ,[IsDeleted]
       ,[CreatedAt]
       ,[UpdatedAt]
-  FROM [bg].[BlogPost]
+  FROM [dbo].[BlogPost]
   WHERE [Id] = @BlogPostId AND [IsDeleted] = 0;
 
   SELECT [Id]
       ,[BlogPostId]
       ,[Url]
       ,[Caption]
-  FROM [bg].[EmbeddedResourse]
+  FROM [dbo].[EmbeddedResourse]
   WHERE [BlogPostId] = @BlogPostId
   ORDER BY [Id] ASC;";
 

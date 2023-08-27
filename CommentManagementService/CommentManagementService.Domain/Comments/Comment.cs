@@ -6,7 +6,9 @@ namespace CommentManagementService.Domain.Comments;
 
 public class Comment : AggregateRoot<long>
 {
-    public PublishedBlogPost BlogPost { get; private set; }
+    private Comment() { }
+
+    public PublishedBlogPost PublishedBlogPost { get; private set; }
     public Commentor Commentor { get; private set; }
     public Comment? ParentComment { get; private set; }
     public Message Message { get; private set; }
@@ -14,11 +16,11 @@ public class Comment : AggregateRoot<long>
     public DateTime CreatedAt { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
-    internal Comment(PublishedBlogPost blogPost, Commentor commentor, Message message, Comment? parentComment)
+    internal Comment(PublishedBlogPost publishedBlogPost, Commentor commentor, Message message, Comment? parentComment)
     {
         var now = DateTime.UtcNow;
-        
-        BlogPost = blogPost ?? throw new ArgumentNullException(nameof(blogPost));
+
+        PublishedBlogPost = publishedBlogPost ?? throw new ArgumentNullException(nameof(publishedBlogPost));
         Commentor = commentor ?? throw new ArgumentNullException(nameof(commentor));
         Message = message ?? throw new ArgumentNullException(nameof(message));
         ParentComment = parentComment;
@@ -28,7 +30,7 @@ public class Comment : AggregateRoot<long>
 
     public Result<Comment> Reply(Commentor commentor, Message message)
     {
-        var comment = new Comment(BlogPost,
+        var comment = new Comment(PublishedBlogPost,
             commentor ?? throw new ArgumentNullException(nameof(commentor)),
             message ?? throw new ArgumentNullException(nameof(message)),
             this);

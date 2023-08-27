@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CommentManagementService.Application.Comments.Commands.ReplyToComment;
 
-public class ReplyToCommentCommand : Command, IRequest<Result>
+public class ReplyToCommentCommand : Command, IRequest<Result<long>>
 {
     public long CommentId { get; }
     public Guid CommentorId { get; }

@@ -1,5 +1,7 @@
 using System.Net.Mime;
+using BlogPostManagementService.Application.BlogPosts.Commands.CreateDraftBlogPost;
 using BlogPostManagementService.Application.BlogPosts.Commands.DeleteBlogPost;
+using BlogPostManagementService.Application.BlogPosts.Commands.PublishBlogPost;
 using BlogPostManagementService.Application.BlogPosts.Commands.UpdateBlogPost;
 using BlogPostManagementService.Application.BlogPosts.Queries.GetBlogPostById;
 using BlogPostManagementService.Application.BlogPosts.Queries.GetBlogPostById.DTOs;
@@ -53,7 +55,21 @@ public class BlogPostsController : ControllerBase
         if (result == null) return NotFound();
         return Ok(result);
     }
-    
+
+    [HttpPost]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(CreateBlogPostViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> CreateBlogPostAsync([FromBody] CreateBlogPostInputModel im)
+    {
+        var command = new CreateDraftBlogPostCommand(
+            _principalUser.Id, _principalUser.Email, im.Title, im.Content, im.EmbeddedResources);
+
+        var result = await _mediator.Send(command).ConfigureAwait(false);
+        if (result.IsFailure) return UnprocessableEntity(result.Failures);
+        return Ok(new CreateBlogPostViewModel { Id = result });
+    }
+
     [HttpPatch("{blogPostId}")]
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -68,13 +84,26 @@ public class BlogPostsController : ControllerBase
         if (result.IsFailure) return UnprocessableEntity(result.Failures);
         return NoContent();
     }
-    
+
     [HttpDelete("{blogPostId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> DeleteBlogPostAsync(Guid blogPostId)
     {
         var command = new DeleteBlogPostCommand(_principalUser.Id, blogPostId);
+
+        var result = await _mediator.Send(command).ConfigureAwait(false);
+        if (result.IsFailure) return UnprocessableEntity(result.Failures);
+        return NoContent();
+    }
+
+    [HttpPut("published-blog-posts/{blogPostId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> PublishBlogPostAsync(Guid blogPostId)
+    {
+        var command = new PublishBlogPostCommand(_principalUser.Id, blogPostId);
 
         var result = await _mediator.Send(command).ConfigureAwait(false);
         if (result.IsFailure) return UnprocessableEntity(result.Failures);

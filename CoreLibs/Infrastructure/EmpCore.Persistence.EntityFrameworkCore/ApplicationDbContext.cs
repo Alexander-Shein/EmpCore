@@ -6,9 +6,13 @@ namespace EmpCore.Persistence.EntityFrameworkCore;
 public class ApplicationDbContext : DbContext
 {
     private readonly string _connectionString;
-    private readonly Assembly _mappersAssembly;
+    private readonly Assembly _persistenceAssembly;
 
-    public ApplicationDbContext(string connectionString, Assembly mappersAssembly)
+    public ApplicationDbContext() : this("MIGRATION", Assembly.GetExecutingAssembly())
+    {
+    }
+
+    public ApplicationDbContext(string connectionString, Assembly persistenceAssembly)
     {
         if (String.IsNullOrWhiteSpace(connectionString))
         {
@@ -16,17 +20,18 @@ public class ApplicationDbContext : DbContext
             throw new ArgumentException("Cannot be empty.", nameof(connectionString));
         }
         _connectionString = connectionString;
-        _mappersAssembly = mappersAssembly ?? throw new ArgumentNullException(nameof(mappersAssembly));
+        _persistenceAssembly = persistenceAssembly ?? throw new ArgumentNullException(nameof(persistenceAssembly));
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(_connectionString);
+        optionsBuilder.UseSqlServer(_connectionString, 
+            x => x.MigrationsAssembly(_persistenceAssembly.FullName));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(_mappersAssembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(_persistenceAssembly);
 
         base.OnModelCreating(modelBuilder);
     }

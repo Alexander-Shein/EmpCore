@@ -13,7 +13,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="BlogPosts\Mappers\" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.21">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 </Project>

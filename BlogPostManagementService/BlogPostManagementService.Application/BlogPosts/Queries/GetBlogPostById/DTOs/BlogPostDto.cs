@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public Guid AuthorId { get; set; }
+        public string FeedbackEmailAddress { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string PublishStatus { get; set; }

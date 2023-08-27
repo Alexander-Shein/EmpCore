@@ -8,5 +8,4 @@ public interface ICommentDomainRepository : IDomainRepository<PublishedBlogPost,
 {
     public Task<Comment?> GetByIdAsync(long commentId);
     public void Save(Comment comment);
-    public void Update(Comment comment);
 }

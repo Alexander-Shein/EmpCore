@@ -8,7 +8,7 @@ using MediatR;
 
 namespace CommentManagementService.Application.Comments.Commands.ReplyToComment;
 
-public class ReplyToCommentCommandHandler : IRequestHandler<ReplyToCommentCommand, Result>
+public class ReplyToCommentCommandHandler : IRequestHandler<ReplyToCommentCommand, Result<long>>
 {
     private readonly ICommentDomainRepository _commentDomainRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +21,7 @@ public class ReplyToCommentCommandHandler : IRequestHandler<ReplyToCommentComman
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
     }
 
-    public async Task<Result> Handle(ReplyToCommentCommand command, CancellationToken ct)
+    public async Task<Result<long>> Handle(ReplyToCommentCommand command, CancellationToken ct)
     {
         if (command == null) throw new ArgumentNullException(nameof(command));
 
@@ -29,18 +29,18 @@ public class ReplyToCommentCommandHandler : IRequestHandler<ReplyToCommentComman
         var message = Message.Create(command.Message);
 
         var result = Result.Combine(commentor, message);
-        if (result.IsFailure) return result;
+        if (result.IsFailure) return Result.Failure<long>(result.Failures);
 
         var comment = await _commentDomainRepository.GetByIdAsync(command.CommentId).ConfigureAwait(false);
-        if (comment == null) return Result.Failure(ResourceNotFoundFailure.Instance);
+        if (comment == null) return Result.Failure<long>(ResourceNotFoundFailure.Instance);
 
         var reply = comment.Reply(commentor, message);
-        if (reply.IsFailure) return reply;
+        if (reply.IsFailure) return Result.Failure<long>(reply.Failures);
 
         _commentDomainRepository.Save(reply);
         await _unitOfWork.SaveAsync().ConfigureAwait(false);
         
-        return Result.Success();
+        return Result.Success(reply.Value.Id);
     }
 
     private static Result<Commentor> BuildCommentor(Guid commentorId, string userName)

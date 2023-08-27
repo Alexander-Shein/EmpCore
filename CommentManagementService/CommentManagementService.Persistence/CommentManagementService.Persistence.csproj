@@ -7,11 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="BlogPosts\Mappers" />
-      <Folder Include="Comments\Mappers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj" />
       <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj" />
       <ProjectReference Include="..\CommentManagementService.Domain\CommentManagementService.Domain.csproj" />

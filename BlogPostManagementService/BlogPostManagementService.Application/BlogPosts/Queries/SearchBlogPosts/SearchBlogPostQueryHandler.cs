@@ -23,7 +23,7 @@ SELECT TOP (1000) [Id]
       ,[Title]
       ,[PublishDateTime]
       ,[CreatedAt]
-  FROM [bg].[BlogPost]
+  FROM [dbo].[BlogPost]
   WHERE [Id] = @BlogPostId AND [IsDeleted] = 0 AND [PublishStatus] = 'Published'
 ORDER BY [PublishDateTime] DESC;";
 

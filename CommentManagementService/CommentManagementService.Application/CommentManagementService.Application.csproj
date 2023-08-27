@@ -7,13 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Comments\Queries\GetCommentsByBlogPostId\DTOs" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts.csproj" />
       <ProjectReference Include="..\..\CoreLibs\Application\EmpCore.Application\EmpCore.Application.csproj" />
       <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj" />
+      <ProjectReference Include="..\..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj" />
       <ProjectReference Include="..\CommentManagementService.Persistence\CommentManagementService.Persistence.csproj" />
     </ItemGroup>
 
