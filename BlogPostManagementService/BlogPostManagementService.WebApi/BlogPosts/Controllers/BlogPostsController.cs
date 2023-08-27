@@ -1,9 +1,22 @@
+using System.Net.Mime;
+using BlogPostManagementService.Application.BlogPosts.Commands.DeleteBlogPost;
+using BlogPostManagementService.Application.BlogPosts.Commands.UpdateBlogPost;
+using BlogPostManagementService.Application.BlogPosts.Queries.GetBlogPostById;
+using BlogPostManagementService.Application.BlogPosts.Queries.GetBlogPostById.DTOs;
+using BlogPostManagementService.Application.BlogPosts.Queries.SearchBlogPosts;
+using BlogPostManagementService.Application.BlogPosts.Queries.SearchBlogPosts.DTOs;
+using BlogPostManagementService.WebApi.BlogPosts.Models;
 using EmpCore.Api.Middleware.Security;
+using EmpCore.Application.Queries;
+using EmpCore.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPostManagementService.WebApi.BlogPosts.Controllers;
 
+[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+[ProducesResponseType(StatusCodes.Status403Forbidden)]
+[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 [ApiController]
 [Route("[controller]")]
 public class BlogPostsController : ControllerBase
@@ -18,7 +31,53 @@ public class BlogPostsController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<WeatherForecast> Get()
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(PagedList<BlogPostListItemDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PagedList<BlogPostListItemDto>>> SearchBlogPostsAsync([FromQuery] SearchBlogPostsInputModel im)
     {
+        var query = new SearchBlogPostsQuery(im.PageSize, im.PageNumber, im.SortField, im.SortDir);
+        
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+    
+    [HttpGet("{blogPostId}")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(BlogPostDto), StatusCodes.Status200OK)]
+    [ProducesResponseType( StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<BlogPostDto>> GetBlogPostByIdAsync(Guid blogPostId)
+    {
+        var query = new GetBlogPostByIdQuery(blogPostId);
+        
+        var result = await _mediator.Send(query);
+        if (result == null) return NotFound();
+        return Ok(result);
+    }
+    
+    [HttpPatch("{blogPostId}")]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> UpdateBlogPostAsync(Guid blogPostId, [FromBody] UpdateBlogPostInputModel im)
+    {
+        var command = new UpdateBlogPostCommand(
+            _principalUser.Id, blogPostId, im.Title, im.Content, im.EmbeddedResources);
+
+        var result = await _mediator.Send(command).ConfigureAwait(false);
+        if (result.IsFailure) return UnprocessableEntity(result.Failures);
+        return NoContent();
+    }
+    
+    [HttpDelete("{blogPostId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<IActionResult> DeleteBlogPostAsync(Guid blogPostId)
+    {
+        var command = new DeleteBlogPostCommand(_principalUser.Id, blogPostId);
+
+        var result = await _mediator.Send(command).ConfigureAwait(false);
+        if (result.IsFailure) return UnprocessableEntity(result.Failures);
+        return NoContent();
     }
 }

@@ -25,13 +25,15 @@ public class PrincipalUser : IPrincipalUser
         _claims = user.Claims;
     }
 
-    public string Id
+    public Guid Id
     {
         get
         {
-            return _claims
+            var userId = _claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)
                 ?.Value;
+            
+            return Guid.Parse(userId);
         }
     }
 

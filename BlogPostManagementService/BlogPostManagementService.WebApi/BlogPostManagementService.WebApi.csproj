@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BlogPosts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\CoreLibs\Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj" />
