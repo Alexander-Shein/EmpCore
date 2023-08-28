@@ -7,14 +7,16 @@ using EmpCore.Api.Middleware.Security;
 using EmpCore.Application.Queries;
 using EmpCore.Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace CommentManagementService.WebApi.Comments.Controllers;
 
-[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-[ProducesResponseType(StatusCodes.Status403Forbidden)]
-[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+[ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+[ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
+[ProducesResponseType(typeof(void), StatusCodes.Status500InternalServerError)]
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class CommentsController : ControllerBase

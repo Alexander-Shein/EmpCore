@@ -9,18 +9,22 @@ using EmpCore.Crosscutting.DistributedCache;
 using EmpCore.Infrastructure.MessageBus.CAP;
 using EmpCore.Persistence.EntityFrameworkCore;
 using EmpCore.QueryStack.Dapper;
+using EmpCore.WebApi.Swagger;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+IdentityModelEventSource.ShowPII = true;
 
 var oltpSqlConnectionString = builder.Configuration.GetConnectionString("OltpSqlConnectionString");
 var readOnlySqlConnectionString = builder.Configuration.GetConnectionString("ReadOnlySqlConnectionString");
 var azureServiceBusConnectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
 
 // Add Crosscutting
-var redisServer = builder.Configuration["Redis.Server"];
-var redisInstanceName = builder.Configuration["Redis.InstanceName"];
+var redisServer = builder.Configuration["Redis:Server"];
+var redisInstanceName = builder.Configuration["Redis:InstanceName"];
 builder.Services.AddRedisCache(redisServer, redisInstanceName);
 
 // Add Infrastructure
@@ -36,8 +40,8 @@ builder.Services.AddApplication(applicationAssembly);
 builder.Services.AddConnectionFactory(readOnlySqlConnectionString);
 
 // Add Presentation
-var identityServerUrl = new Uri(builder.Configuration["Auth.IdentityServerUrl"], UriKind.Absolute);
-var audience = builder.Configuration["Auth.Audience"];
+var identityServerUrl = new Uri(builder.Configuration["Auth:IdentityServerUrl"], UriKind.Absolute);
+var audience = builder.Configuration["Auth:Audience"];
 
 builder.Services.AddControllers();
 builder.Services.AddWebApiVersioning();
@@ -47,9 +51,15 @@ builder.Services.AddPrincipalUser();
 builder.Services.AddApiAuth(identityServerUrl, audience);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+var model = new SwaggerOptions();
+builder.Configuration.GetSection("Swagger").Bind(model);
+builder.Services.AddSwaggerDocs(model);
 
 var app = builder.Build();
+
+app.UseSwaggerDocs();
+app.UseRateLimiter();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

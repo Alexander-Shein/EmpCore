@@ -17,7 +17,15 @@ public class SearchCommentsQueryHandler : IRequestHandler<SearchCommentsQuery, P
 
     public async Task<PagedList<CommentListItemDto>> Handle(SearchCommentsQuery query, CancellationToken ct)
     {
-        const string SQL = @"SQL";
+        const string SQL = @"
+SELECT TOP (1000) [Id]
+      ,[PublishedBlogPostId]
+      ,[CommentorId]
+      ,[Message]
+      ,[CreatedAt]
+      ,[UpdatedAt]
+  FROM [dbo].[Comment]
+ORDER BY [CreatedAt] DESC;";
 
         if (query == null) throw new ArgumentNullException(nameof(query));
 

@@ -17,33 +17,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C03327F2-A304-45A0-9186-4A44E7968EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Domain", "..\CoreLibs\Domain\EmpCore.Domain\EmpCore.Domain.csproj", "{CF82C1F6-B930-49F1-A2E6-A435D60303EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Domain", "..\CoreLibs\Domain\EmpCore.Domain\EmpCore.Domain.csproj", "{CF82C1F6-B930-49F1-A2E6-A435D60303EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Crosscutting.DistributedCache", "..\CoreLibs\Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj", "{3014E560-2695-4F2B-9908-7784BD6DD03A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Crosscutting.DistributedCache", "..\CoreLibs\Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj", "{3014E560-2695-4F2B-9908-7784BD6DD03A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Infrastructure", "..\CoreLibs\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj", "{D9955C73-92D5-4CC3-A822-09AFBA393045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure", "..\CoreLibs\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj", "{D9955C73-92D5-4CC3-A822-09AFBA393045}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Infrastructure.MessageBus.CAP", "..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{E6F6200C-2BEF-4016-9CF2-51C2F55CB737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Infrastructure.MessageBus.CAP", "..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj", "{E6F6200C-2BEF-4016-9CF2-51C2F55CB737}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Persistence.EntityFrameworkCore", "..\CoreLibs\Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj", "{C711CF92-CAD9-4CB0-B9D8-6B1A71DDFACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Persistence.EntityFrameworkCore", "..\CoreLibs\Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj", "{C711CF92-CAD9-4CB0-B9D8-6B1A71DDFACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Application", "..\CoreLibs\Application\EmpCore.Application\EmpCore.Application.csproj", "{C4E69176-916C-445F-AF8C-1031407DA73E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Application", "..\CoreLibs\Application\EmpCore.Application\EmpCore.Application.csproj", "{C4E69176-916C-445F-AF8C-1031407DA73E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.Api", "..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj", "{4F50390F-4906-4906-9D7E-5B493650BDC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Api", "..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj", "{4F50390F-4906-4906-9D7E-5B493650BDC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryStack", "QueryStack", "{A7568574-A71C-4D28-94E4-7874E04CF7C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.QueryStack.Dapper", "..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj", "{C6333582-935E-4286-A49B-6B41140945DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.QueryStack.Dapper", "..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj", "{C6333582-935E-4286-A49B-6B41140945DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentManagementService.Domain", "CommentManagementService.Domain\CommentManagementService.Domain.csproj", "{B25EC9C2-2C21-498F-A01F-CB3323AA695B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentManagementService.Domain", "CommentManagementService.Domain\CommentManagementService.Domain.csproj", "{B25EC9C2-2C21-498F-A01F-CB3323AA695B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPostManagementService.Contracts", "BlogPostManagementService.Contracts", "{5BCEE4F5-7CCA-4AAF-8427-B9FB9EAC5145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogPostManagementService.Contracts", "..\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts.csproj", "{1109A3C7-A13D-4C55-81A1-53D7E8207015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogPostManagementService.Contracts", "..\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts\BlogPostManagementService.Contracts.csproj", "{1109A3C7-A13D-4C55-81A1-53D7E8207015}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentManagementService.Application", "CommentManagementService.Application\CommentManagementService.Application.csproj", "{6926978B-572B-44E6-AE0C-8649F5E3CE63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentManagementService.Application", "CommentManagementService.Application\CommentManagementService.Application.csproj", "{6926978B-572B-44E6-AE0C-8649F5E3CE63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentManagementService.Persistence", "CommentManagementService.Persistence\CommentManagementService.Persistence.csproj", "{2671BE14-50D9-47C4-8866-8F5B8B254885}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentManagementService.Persistence", "CommentManagementService.Persistence\CommentManagementService.Persistence.csproj", "{2671BE14-50D9-47C4-8866-8F5B8B254885}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.WebApi.Swagger", "..\CoreLibs\Presentation\EmpCore.WebApi.Swagger\EmpCore.WebApi.Swagger.csproj", "{F709A0EC-FE64-4B06-B2DE-849ACE608A38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,12 +105,13 @@ Global
 		{2671BE14-50D9-47C4-8866-8F5B8B254885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2671BE14-50D9-47C4-8866-8F5B8B254885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2671BE14-50D9-47C4-8866-8F5B8B254885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F709A0EC-FE64-4B06-B2DE-849ACE608A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F709A0EC-FE64-4B06-B2DE-849ACE608A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F709A0EC-FE64-4B06-B2DE-849ACE608A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F709A0EC-FE64-4B06-B2DE-849ACE608A38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {35D129F7-6BD6-4018-86FE-537F37FDF54C}
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{912E4A01-20D9-4E74-82BB-3E838C18D5D5} = {F95C5E88-1B7A-44C5-9133-37E46F98893D}
@@ -126,5 +129,9 @@ Global
 		{A7568574-A71C-4D28-94E4-7874E04CF7C3} = {F95C5E88-1B7A-44C5-9133-37E46F98893D}
 		{C6333582-935E-4286-A49B-6B41140945DB} = {A7568574-A71C-4D28-94E4-7874E04CF7C3}
 		{1109A3C7-A13D-4C55-81A1-53D7E8207015} = {5BCEE4F5-7CCA-4AAF-8427-B9FB9EAC5145}
+		{F709A0EC-FE64-4B06-B2DE-849ACE608A38} = {8128CBAA-5616-4F51-B18D-FD9EE4A837C4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35D129F7-6BD6-4018-86FE-537F37FDF54C}
 	EndGlobalSection
 EndGlobal

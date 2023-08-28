@@ -16,9 +16,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogPostManagementService.WebApi.BlogPosts.Controllers;
 
-[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-[ProducesResponseType(StatusCodes.Status403Forbidden)]
-[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+[ProducesResponseType(typeof(void), StatusCodes.Status401Unauthorized)]
+[ProducesResponseType(typeof(void), StatusCodes.Status403Forbidden)]
+[ProducesResponseType(typeof(void), StatusCodes.Status500InternalServerError)]
 [ApiController]
 [Route("[controller]")]
 public class BlogPostsController : ControllerBase
@@ -46,7 +46,7 @@ public class BlogPostsController : ControllerBase
     [HttpGet("{blogPostId}")]
     [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(typeof(BlogPostDto), StatusCodes.Status200OK)]
-    [ProducesResponseType( StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     public async Task<ActionResult<BlogPostDto>> GetBlogPostByIdAsync(Guid blogPostId)
     {
         var query = new GetBlogPostByIdQuery(blogPostId);
@@ -72,8 +72,8 @@ public class BlogPostsController : ControllerBase
 
     [HttpPatch("{blogPostId}")]
     [Consumes(MediaTypeNames.Application.Json)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> UpdateBlogPostAsync(Guid blogPostId, [FromBody] UpdateBlogPostInputModel im)
     {
@@ -86,7 +86,7 @@ public class BlogPostsController : ControllerBase
     }
 
     [HttpDelete("{blogPostId}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> DeleteBlogPostAsync(Guid blogPostId)
     {
@@ -98,8 +98,8 @@ public class BlogPostsController : ControllerBase
     }
 
     [HttpPut("published-blog-posts/{blogPostId}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> PublishBlogPostAsync(Guid blogPostId)
     {

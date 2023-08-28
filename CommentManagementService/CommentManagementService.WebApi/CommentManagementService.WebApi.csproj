@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Persistence.EntityFrameworkCore\EmpCore.Persistence.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj" />
+    <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.WebApi.Swagger\EmpCore.WebApi.Swagger.csproj" />
     <ProjectReference Include="..\..\CoreLibs\QueryStack\EmpCore.QueryStack.Dapper\EmpCore.QueryStack.Dapper.csproj" />
     <ProjectReference Include="..\CommentManagementService.Application\CommentManagementService.Application.csproj" />
     <ProjectReference Include="..\CommentManagementService.Domain\CommentManagementService.Domain.csproj" />
