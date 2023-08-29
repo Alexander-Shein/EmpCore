@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using DotNetCore.CAP;
-using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmpCore.Infrastructure.MessageBus.CAP;
@@ -34,7 +33,8 @@ public static class MessageBusCollectionExtensions
                 options.UseAzureServiceBus(opt =>
                 {
                     opt.ConnectionString = azureServiceBusConnectionString;
-                    opt.TopicPath = "subscribe-application-events"; // TODO: Move to config
+                    opt.TopicPath = GetTopicPath(azureServiceBusConnectionString)
+                        ?? throw new ArgumentException("TopicPath is required.", nameof(azureServiceBusConnectionString));
                 });
             });
 
@@ -54,5 +54,20 @@ public static class MessageBusCollectionExtensions
         }
 
         return services;
+    }
+
+    private static string? GetTopicPath(string azureServiceBusConnectionString)
+    {
+        const string TopicPath = "TopicPath";
+
+        foreach (var part in azureServiceBusConnectionString.Split(';'))
+        {
+            if (part.StartsWith($"{TopicPath}=", StringComparison.OrdinalIgnoreCase))
+            {
+                return part.Split('=')[1];
+            }
+        }
+
+        return null;
     }
 }
