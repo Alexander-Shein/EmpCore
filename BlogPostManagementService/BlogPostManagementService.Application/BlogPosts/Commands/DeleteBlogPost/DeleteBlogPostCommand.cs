@@ -6,10 +6,10 @@ namespace BlogPostManagementService.Application.BlogPosts.Commands.DeleteBlogPos
 
 public class DeleteBlogPostCommand : Command, IRequest<Result>
 {
-    public Guid DeletedBy { get; }
+    public string DeletedBy { get; }
     public Guid BlogPostId { get; }
 
-    public DeleteBlogPostCommand(Guid deletedBy, Guid blogPostId)
+    public DeleteBlogPostCommand(string deletedBy, Guid blogPostId)
     {
         DeletedBy = deletedBy;
         BlogPostId = blogPostId;

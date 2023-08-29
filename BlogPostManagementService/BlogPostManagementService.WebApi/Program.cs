@@ -9,27 +9,29 @@ using EmpCore.Crosscutting.DistributedCache;
 using EmpCore.Infrastructure.MessageBus.CAP;
 using EmpCore.Persistence.EntityFrameworkCore;
 using EmpCore.QueryStack.Dapper;
+using EmpCore.WebApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var applicationAssembly = typeof(CreateDraftBlogPostCommand).Assembly;
+var persistenceAssembly = typeof(IBlogPostDomainRepository).Assembly;
 
 var oltpSqlConnectionString = builder.Configuration.GetConnectionString("OltpSqlConnectionString");
 var readOnlySqlConnectionString = builder.Configuration.GetConnectionString("ReadOnlySqlConnectionString");
 var azureServiceBusConnectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
 
 // Add Crosscutting
-var redisServer = builder.Configuration["Redi:.Server"];
+var redisServer = builder.Configuration["Redis:Server"];
 var redisInstanceName = builder.Configuration["Redis:InstanceName"];
 builder.Services.AddRedisCache(redisServer, redisInstanceName);
 
 // Add Infrastructure
-var persistenceAssembly = typeof(IBlogPostDomainRepository).Assembly;
 builder.Services.AddApplicationDbContext(oltpSqlConnectionString, persistenceAssembly);
-builder.Services.AddCapMessageBus(oltpSqlConnectionString, azureServiceBusConnectionString);
+builder.Services.AddCapMessageBus(oltpSqlConnectionString, azureServiceBusConnectionString, applicationAssembly);
 
 // Add Application
-var applicationAssembly = typeof(CreateDraftBlogPostCommand).Assembly;
 builder.Services.AddApplication(applicationAssembly);
 
 // Add QueryStack
@@ -39,30 +41,26 @@ builder.Services.AddConnectionFactory(readOnlySqlConnectionString);
 var identityServerUrl = new Uri(builder.Configuration["Auth:IdentityServerUrl"], UriKind.Absolute);
 var audience = builder.Configuration["Auth:Audience"];
 
+var swaggerOptions = new SwaggerOptions();
+builder.Configuration.GetSection("Swagger").Bind(swaggerOptions);
+
 builder.Services.AddControllers();
 builder.Services.AddWebApiVersioning();
 builder.Services.SlugifyWebApiUrls();
 builder.Services.AddRateLimiting();
 builder.Services.AddPrincipalUser();
 builder.Services.AddApiAuth(identityServerUrl, audience);
-
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocs(swaggerOptions);
 
 var app = builder.Build();
 
+app.UseSwaggerDocs();
 app.UseRateLimiter();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
 

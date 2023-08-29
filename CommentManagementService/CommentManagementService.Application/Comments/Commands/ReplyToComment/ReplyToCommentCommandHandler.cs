@@ -43,7 +43,7 @@ public class ReplyToCommentCommandHandler : IRequestHandler<ReplyToCommentComman
         return Result.Success(reply.Value.Id);
     }
 
-    private static Result<Commentor> BuildCommentor(Guid commentorId, string userName)
+    private static Result<Commentor> BuildCommentor(string commentorId, string userName)
     {
         var userNameResult = UserName.Create(userName);
         if (userNameResult.IsFailure) return Result.Failure<Commentor>(userNameResult.Failures);

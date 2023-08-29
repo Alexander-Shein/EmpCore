@@ -20,11 +20,12 @@ namespace BlogPostManagementService.Application.BlogPosts.Queries.SearchBlogPost
             const string SQL = @"
 SELECT TOP (1000) [Id]
       ,[AuthorId]
+      ,[FeedbackEmailAddress]
       ,[Title]
       ,[PublishDateTime]
       ,[CreatedAt]
   FROM [dbo].[BlogPost]
-  WHERE [Id] = @BlogPostId AND [IsDeleted] = 0 AND [PublishStatus] = 'Published'
+  WHERE [IsDeleted] = 0
 ORDER BY [PublishDateTime] DESC;";
 
             if (query == null) throw new ArgumentNullException(nameof(query));
@@ -34,7 +35,7 @@ ORDER BY [PublishDateTime] DESC;";
             using (var dbConn = await _connectionFactory.CreateConnectionAsync().ConfigureAwait(false))
             {
                 var dtos = (await dbConn.QueryAsync<BlogPostListItemDto>(SQL, prms).ConfigureAwait(false)).ToList();
-                return new PagedList<BlogPostListItemDto>(dtos.Count, 100, 1, "PublishDateTime", SortDir.Desc, dtos);
+                return new PagedList<BlogPostListItemDto>(dtos.Count, 100, 1, "CreatedAt", SortDir.Desc, dtos);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Identity.Web;
 
 namespace EmpCore.Api.Middleware.Security;
 
@@ -26,12 +27,19 @@ public static class SecurityCollectionExtensions
         services
             .AddAuthorization()
             .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.Authority = identityServerUrl.OriginalString;
-                options.Audience = audience;
-                options.RequireHttpsMetadata = true;
-            });
+            .AddMicrosoftIdentityWebApi(options =>
+                {
+                    options.Authority = identityServerUrl.OriginalString;
+                    options.Audience = audience;
+                    options.RequireHttpsMetadata = true;
+                },
+                options =>
+                {
+                    options.ClientId = audience;
+                    options.TenantId = "common";
+                    options.Instance = identityServerUrl.OriginalString;
+                }
+            );
 
         return services;
     }

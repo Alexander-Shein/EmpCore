@@ -3,13 +3,13 @@ using EmpCore.Domain;
 
 namespace BlogPostManagementService.Domain.BlogPosts;
 
-public class Author : Entity<Guid>
+public class Author : Entity<string>
 {
     public EmailAddress FeedbackEmailAddress { get; private set; }
 
-    public static Result<Author> Create(Guid id, EmailAddress feedbackEmailAddress)
+    public static Result<Author> Create(string id, EmailAddress feedbackEmailAddress)
     {
-        if (id == Guid.Empty) throw new ArgumentException("Empty author id.", nameof(id));
+        if (String.IsNullOrWhiteSpace(id)) throw new ArgumentException("Empty author id.", nameof(id));
 
         var author = new Author
         {

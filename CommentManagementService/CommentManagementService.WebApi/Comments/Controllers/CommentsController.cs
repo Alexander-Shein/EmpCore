@@ -48,7 +48,7 @@ public class CommentsController : ControllerBase
     public async Task<IActionResult> CreateCommentAsync([FromBody] CreateCommentInputModel im)
     {
         var command = new AddCommentCommand(im.PublishedBlogPostId,
-            _principalUser.Id, $"{_principalUser.FirstName} {_principalUser.LastName[0]}.", im.Message);
+            _principalUser.Id, _principalUser.PreferredUserName, im.Message);
 
         var result = await _mediator.Send(command).ConfigureAwait(false);
         if (result.IsFailure) return UnprocessableEntity(result.Failures);
@@ -62,7 +62,7 @@ public class CommentsController : ControllerBase
     public async Task<IActionResult> ReplyToCommentAsync(long commentId, [FromBody] ReplyToCommentInputModel im)
     {
         var command = new ReplyToCommentCommand(commentId,
-            _principalUser.Id, $"{_principalUser.FirstName} {_principalUser.LastName[0]}.", im.Message);
+            _principalUser.Id, _principalUser.PreferredUserName, im.Message);
 
         var result = await _mediator.Send(command).ConfigureAwait(false);
         if (result.IsFailure) return UnprocessableEntity(result.Failures);

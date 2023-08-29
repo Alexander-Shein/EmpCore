@@ -7,14 +7,14 @@ namespace BlogPostManagementService.Application.BlogPosts.Commands.UpdateBlogPos
 
 public class UpdateBlogPostCommand : Command, IRequest<Result>
 {
-    public Guid UpdatedBy { get; }
+    public string UpdatedBy { get; }
     public Guid BlogPostId { get; }
     public string? Title { get; }
     public string? Content { get; }
     public IReadOnlyList<EmbeddedResourceDto>? EmbeddedResources { get; }
 
     public UpdateBlogPostCommand(
-        Guid updatedBy,
+        string updatedBy,
         Guid blogPostId,
         string? title,
         string? content,

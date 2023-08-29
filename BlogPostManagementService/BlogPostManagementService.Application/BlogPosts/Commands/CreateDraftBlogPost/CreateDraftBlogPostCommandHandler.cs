@@ -47,7 +47,7 @@ public class CreateDraftBlogPostCommandHandler : IRequestHandler<CreateDraftBlog
         return Result.Success(blogPost.Value.Id);
     }
 
-    private static Result<Author> BuildAuthor(Guid authorId, string feedbackEmailAddress)
+    private static Result<Author> BuildAuthor(string authorId, string feedbackEmailAddress)
     {
         var feedbackEmailAddressResult = EmailAddress.Create(feedbackEmailAddress);
         if (feedbackEmailAddressResult.IsFailure) return Result.Failure<Author>(feedbackEmailAddressResult.Failures);
@@ -58,14 +58,20 @@ public class CreateDraftBlogPostCommandHandler : IRequestHandler<CreateDraftBlog
 
     private static Result<Content> BuildContent(string text, IEnumerable<EmbeddedResourceDto> embeddedResources)
     {
-        var embeddedResourcesResult = embeddedResources
-            .Select(er => EmbeddedResource.Create(new Uri(er.Url), er.Caption))
-            .ToArray();
-
-        var result = Result.Combine(embeddedResourcesResult);
-        if (result.IsFailure) return Result.Failure<Content>(result.Failures);
+        var embeddedResourcesDomain = Enumerable.Empty<EmbeddedResource>();
         
-        var content = Content.Create(text, embeddedResourcesResult.Select(er => er.Value));
+        if (embeddedResources.Any())
+        {
+            var embeddedResourcesResult = embeddedResources
+                .Select(er => EmbeddedResource.Create(new Uri(er.Url), er.Caption))
+                .ToArray();
+
+            var result = Result.Combine(embeddedResourcesResult);
+            if (result.IsFailure) return Result.Failure<Content>(result.Failures);
+            embeddedResourcesDomain = embeddedResourcesResult.Select(er => er.Value);
+        }
+        
+        var content = Content.Create(text, embeddedResourcesDomain);
         return content;
     }
 }

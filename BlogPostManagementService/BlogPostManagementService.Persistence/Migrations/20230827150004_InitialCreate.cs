@@ -17,7 +17,7 @@ BEGIN
 	CREATE TABLE [dbo].[BlogPost]
 	(
 		[Id]					UNIQUEIDENTIFIER NOT NULL,
-		[AuthorId]				UNIQUEIDENTIFIER NOT NULL,
+		[AuthorId]				VARCHAR(128) NOT NULL,
 		[FeedbackEmailAddress]	NVARCHAR(256) NOT NULL CONSTRAINT [DF_BlogPost_FeedbackEmailAddress] DEFAULT '',
 		[Title]					NVARCHAR(1024) NOT NULL		CONSTRAINT [DF_BlogPost_Title] DEFAULT '',
 		[Content]				NVARCHAR(MAX) NOT NULL		CONSTRAINT [DF_BlogPost_Content] DEFAULT '',

@@ -35,7 +35,7 @@ SELECT TOP (1) [Id]
       ,[BlogPostId]
       ,[Url]
       ,[Caption]
-  FROM [dbo].[EmbeddedResourse]
+  FROM [dbo].[EmbeddedResource]
   WHERE [BlogPostId] = @BlogPostId
   ORDER BY [Id] ASC;";
 
@@ -47,10 +47,10 @@ SELECT TOP (1) [Id]
             using (var dbConn = await _connectionFactory.CreateConnectionAsync().ConfigureAwait(false))
             using (var dbQuery = await dbConn.QueryMultipleAsync(SQL, prms).ConfigureAwait(false))
             {
-                var dto = await dbQuery.ReadFirstAsync<BlogPostDto>().ConfigureAwait(false);
+                var dto = await dbQuery.ReadFirstOrDefaultAsync<BlogPostDto>().ConfigureAwait(false);
                 if (dto == null) return dto;
 
-                dto.EmbeddedResourses = (await dbQuery.ReadAsync<EmbeddedResourseDto>().ConfigureAwait(false)).ToList();
+                dto.EmbeddedResourses = (await dbQuery.ReadAsync<ContentEmbeddedResourceDto>().ConfigureAwait(false)).ToList();
                 return dto;
             }
         }

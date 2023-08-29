@@ -7,13 +7,13 @@ namespace CommentManagementService.Application.Comments.Commands.AddComment;
 public class AddCommentCommand : Command, IRequest<Result<long>>
 {
     public Guid PublishedBlogPostId { get; }
-    public Guid CommentorId { get; }
+    public string CommentorId { get; }
     public string CommentorUserName { get; }
     public string Message { get; }
     
     public AddCommentCommand(
         Guid publishedBlogPostId,
-        Guid commentorId,
+        string commentorId,
         string commentorUserName,
         string message)
     {

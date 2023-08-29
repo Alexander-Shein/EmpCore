@@ -6,10 +6,10 @@ namespace BlogPostManagementService.Application.BlogPosts.Commands.PublishBlogPo
 
 public class PublishBlogPostCommand : Command, IRequest<Result>
 {
-    public Guid PublishedBy { get; }
+    public string PublishedBy { get; }
     public Guid BlogPostId { get; }
 
-    public PublishBlogPostCommand(Guid publishedBy, Guid blogPostId)
+    public PublishBlogPostCommand(string publishedBy, Guid blogPostId)
     {
         PublishedBy = publishedBy;
         BlogPostId = blogPostId;

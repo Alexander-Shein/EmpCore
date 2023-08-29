@@ -9,7 +9,7 @@ public class Title : SingleValueObject<string>
     private const int MaxLenght = 1000;
     private const string NotAllowedCharacters = "\r\n";
 
-    private Title(string title) : base(title) { }
+    private Title(string value) : base(value) { }
 
     public static Result<Title> Create(string title)
     {

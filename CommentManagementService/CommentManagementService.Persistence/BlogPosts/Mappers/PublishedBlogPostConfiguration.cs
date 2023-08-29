@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using CommentManagementService.Domain.BlogPosts;
+using CommentManagementService.Domain.Comments;
 
 namespace CommentManagementService.Persistence.BlogPosts.Mappers;
 

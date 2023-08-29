@@ -6,9 +6,9 @@ namespace BlogPostManagementService.Domain.BlogPosts.DomainEvents
     public class BlogPostDeletedDomainEvent : DomainEvent, INotification
     {
         public Guid BlogPostId { get; }
-        public Guid AuthorId { get; }
+        public string AuthorId { get; }
 
-        public BlogPostDeletedDomainEvent(Guid blogPostId, Guid authorId)
+        public BlogPostDeletedDomainEvent(Guid blogPostId, string authorId)
         {
             BlogPostId = blogPostId;
             AuthorId = authorId;

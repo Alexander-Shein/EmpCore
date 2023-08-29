@@ -7,7 +7,7 @@ public class Result
 
     private static readonly Result SuccessInstance = new();
 
-    private Result() { }
+    protected internal Result() { }
 
     protected internal Result(params Failure[] failures)
     {
@@ -35,10 +35,10 @@ public class Result
         foreach (var result in results)
         {
             if (result == null) throw new ArgumentNullException(nameof(results), NullCollectionElementMessage);
-            errors.AddRange(result.Failures);
+            if (result.IsFailure) errors.AddRange(result.Failures);
         }
 
-        if (errors.Any()) return SuccessInstance;
+        if (!errors.Any()) return SuccessInstance;
         return new Result(errors.ToArray());
     }
 

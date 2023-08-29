@@ -15,7 +15,7 @@ namespace BlogPostManagementService.Persistence.BlogPosts.Mappers
 
             builder.OwnsOne(p => p.Author, a =>
             {
-                a.Property(u => u.Id).HasColumnName("AuthorId").HasColumnType("UNIQUEIDENTIFIER").IsRequired();
+                a.Property(u => u.Id).HasColumnName("AuthorId").HasColumnType("VARCHAR(128)").IsRequired();
 
                 a.OwnsOne(x => x.FeedbackEmailAddress, c =>
                 {
@@ -31,6 +31,7 @@ namespace BlogPostManagementService.Persistence.BlogPosts.Mappers
             builder.OwnsOne(p => p.Content, c =>
             {
                 c.Property(x => x.Text).HasColumnName("Content").HasColumnType("NVARCHAR(MAX)").IsRequired();
+                c.Ignore(x => x.EmbeddedResources);
             });
 
             builder.OwnsOne(p => p.PublishStatus, c =>

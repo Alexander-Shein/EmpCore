@@ -26,7 +26,7 @@ public class BlogPostPublishedEventHandler : ICapSubscribe
         if (@event == null) throw new ArgumentNullException(nameof(@event));
 
         var blogPost = await _publishedBlogPostDomainRepository.GetByIdAsync(@event.BlogPostId).ConfigureAwait(false);
-        if (blogPost != null) return;
+        if (blogPost == null) return;
 
         blogPost = PublishedBlogPost.Create(@event.BlogPostId);
         

@@ -1,11 +1,11 @@
 ﻿using EmpCore.Domain;
 using MediatR;
-using System.Windows.Input;
+using EmpCore.Application.Commands;
 
 namespace EmpCore.Application.Middleware.DomainEventsDispatcher;
 
 public class DomainEventsDispatcherPipelineBehavior<TCommand, TResult> : IPipelineBehavior<TCommand, TResult>
-where TCommand : class, ICommand, IRequest<TResult>
+where TCommand : Command, IRequest<TResult>
 where TResult : Result
 {
     private readonly IDomainEventsDispatcher _domainEventsDispatcher;

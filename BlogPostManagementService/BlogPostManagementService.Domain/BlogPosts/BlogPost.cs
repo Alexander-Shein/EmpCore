@@ -42,7 +42,7 @@ public class BlogPost : AggregateRoot<Guid>
         return Result.Success(blogPost);
     }
 
-    public Result Update(Guid updatedBy, Title? title = null, Content? content = null)
+    public Result Update(string updatedBy, Title? title = null, Content? content = null)
     {
         if (Author.Id != updatedBy) return Result.Failure(new BlogPostUpdateForbiddenFailure(Id));
         if (IsDeleted) return Result.Failure(new BlogPostIsDeletedFailure(Id));
@@ -64,7 +64,7 @@ public class BlogPost : AggregateRoot<Guid>
         return Result.Success();
     }
 
-    public Result Publish(Guid publishedBy)
+    public Result Publish(string publishedBy)
     {
         if (Author.Id != publishedBy) return Result.Failure(new BlogPostUpdateForbiddenFailure(Id));
         if (IsDeleted) return Result.Failure(new BlogPostIsDeletedFailure(Id));
@@ -76,7 +76,7 @@ public class BlogPost : AggregateRoot<Guid>
         return Result.Success();
     }
     
-    public Result Delete(Guid deletedBy)
+    public Result Delete(string deletedBy)
     {
         if (Author.Id != deletedBy) return Result.Failure(new BlogPostUpdateForbiddenFailure(Id));
         if (IsDeleted) return Result.Success();

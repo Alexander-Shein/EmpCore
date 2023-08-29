@@ -11,7 +11,7 @@ public class PublishStatus : SingleValueObject<string>
 
     public static readonly IReadOnlyList<PublishStatus> List = new[] { Draft, Released }.ToImmutableList();
 
-    private PublishStatus(string publishStatus) : base(publishStatus) { }
+    private PublishStatus(string value) : base(value) { }
 
     public static Result<PublishStatus> From(string publishStatus)
     {

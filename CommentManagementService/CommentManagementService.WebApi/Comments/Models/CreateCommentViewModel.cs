@@ -1,7 +1,4 @@
-﻿using CommentManagementService.Domain.BlogPosts;
-using CommentManagementService.Domain.Comments;
-
-namespace CommentManagementService.WebApi.Comments.Models;
+﻿namespace CommentManagementService.WebApi.Comments.Models;
 
 public class CreateCommentViewModel
 {

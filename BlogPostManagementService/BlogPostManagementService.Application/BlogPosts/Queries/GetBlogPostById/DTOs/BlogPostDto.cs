@@ -3,7 +3,7 @@
     public class BlogPostDto
     {
         public Guid Id { get; set; }
-        public Guid AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public string FeedbackEmailAddress { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
@@ -13,6 +13,6 @@
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public IEnumerable<EmbeddedResourseDto> EmbeddedResourses { get; set; }
+        public IEnumerable<ContentEmbeddedResourceDto> EmbeddedResourses { get; set; }
     }
 }

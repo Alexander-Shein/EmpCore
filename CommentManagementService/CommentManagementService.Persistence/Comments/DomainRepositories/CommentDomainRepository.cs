@@ -22,5 +22,6 @@ public class CommentDomainRepository : ICommentDomainRepository
     public void Save(Comment comment)
     {
         _dbContext.Add(comment ?? throw new ArgumentNullException(nameof(comment)));
+        _dbContext.Attach(comment.Commentor);
     }
 }

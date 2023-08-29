@@ -1,11 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+using DotNetCore.CAP;
+using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EmpCore.Infrastructure.MessageBus.CAP;
 
 public static class MessageBusCollectionExtensions
 {
     public static IServiceCollection AddCapMessageBus(
-        this IServiceCollection services, string sqlServerConnectionString, string azureServiceBusConnectionString)
+        this IServiceCollection services,
+        string sqlServerConnectionString,
+        string azureServiceBusConnectionString,
+        Assembly applicationAssembly)
     {
         if (string.IsNullOrWhiteSpace(sqlServerConnectionString))
         {
@@ -20,11 +26,32 @@ public static class MessageBusCollectionExtensions
         }
 
         services
+            .AddTransient<IMessageBus, CapMessageBus>()
+            .AddCapSubscribers(applicationAssembly)
             .AddCap(options =>
             {
                 options.UseSqlServer(sqlServerConnectionString);
-                options.UseAzureServiceBus(azureServiceBusConnectionString);
+                options.UseAzureServiceBus(opt =>
+                {
+                    opt.ConnectionString = azureServiceBusConnectionString;
+                    opt.TopicPath = "subscribe-application-events"; // TODO: Move to config
+                });
             });
+
+        return services;
+    }
+    
+    private static IServiceCollection AddCapSubscribers(this IServiceCollection services, params Assembly[] assemblies)
+    {
+        var implementations = assemblies
+            .SelectMany(s => s.GetTypes())
+            .Where(t => t.IsClass && !t.IsAbstract)
+            .Where(t => typeof(ICapSubscribe).IsAssignableFrom(t));
+
+        foreach (var implementation in implementations)
+        {
+            services.AddTransient(implementation);
+        }
 
         return services;
     }

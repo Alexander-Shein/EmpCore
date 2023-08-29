@@ -4,9 +4,8 @@ namespace EmpCore.Api.Middleware.Security;
 
 public interface IPrincipalUser
 {
-    public Guid Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
+    public string Id { get; }
+    public string PreferredUserName { get; }
     public string Email { get; }
 
     public IReadOnlyList<Claim> Claims { get; }

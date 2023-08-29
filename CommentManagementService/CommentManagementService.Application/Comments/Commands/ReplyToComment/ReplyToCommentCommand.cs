@@ -7,13 +7,13 @@ namespace CommentManagementService.Application.Comments.Commands.ReplyToComment;
 public class ReplyToCommentCommand : Command, IRequest<Result<long>>
 {
     public long CommentId { get; }
-    public Guid CommentorId { get; }
+    public string CommentorId { get; }
     public string CommentorUserName { get; }
     public string Message { get; }
     
     public ReplyToCommentCommand(
         long commentId,
-        Guid commentorId,
+        string commentorId,
         string commentorUserName,
         string message)
     {

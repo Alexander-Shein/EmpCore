@@ -6,9 +6,8 @@ namespace EmpCore.Api.Middleware.Security;
 
 public class PrincipalUser : IPrincipalUser
 {
-    private const string FirstNameClaimType = "first_name";
-    private const string LastNameClaimType = "last_name";
-
+    private const string PreferredUsernameClaim = "preferred_username";
+    
     private readonly IPrincipal _user;
     private readonly IEnumerable<Claim> _claims;
 
@@ -25,15 +24,13 @@ public class PrincipalUser : IPrincipalUser
         _claims = user.Claims;
     }
 
-    public Guid Id
+    public string Id
     {
         get
         {
-            var userId = _claims
+            return _claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)
                 ?.Value;
-            
-            return Guid.Parse(userId);
         }
     }
 
@@ -47,22 +44,12 @@ public class PrincipalUser : IPrincipalUser
         }
     }
 
-    public string FirstName
+    public string PreferredUserName
     {
         get
         {
             return _claims
-                .FirstOrDefault(c => c.Type == FirstNameClaimType)
-                ?.Value;
-        }
-    }
-
-    public string LastName
-    {
-        get
-        {
-            return _claims
-                .FirstOrDefault(c => c.Type == LastNameClaimType)
+                .FirstOrDefault(c => c.Type == PreferredUsernameClaim)
                 ?.Value;
         }
     }

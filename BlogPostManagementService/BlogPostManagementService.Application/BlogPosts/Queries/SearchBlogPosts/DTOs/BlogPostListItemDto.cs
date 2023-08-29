@@ -3,7 +3,8 @@
     public class BlogPostListItemDto
     {
         public Guid Id { get; set; }
-        public Guid AuthorId { get; set; }
+        public string AuthorId { get; set; }
+        public string FeedbackEmailAddress { get; set; }
         public string Title { get; set; }
         public DateTime? PublishDateTime { get; set; }
         public DateTime CreatedAt { get; set; }

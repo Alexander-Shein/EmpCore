@@ -7,7 +7,7 @@ public class EmailAddress : SingleValueObject<string>
 {
     private const int MaxLength = 256;
 
-    private EmailAddress(string emailAddress) : base(emailAddress)
+    private EmailAddress(string value) : base(value)
     {
     }
 

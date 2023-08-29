@@ -2,6 +2,6 @@
 
 public class CreateCommentInputModel
 {
-    public Guid PublishedBlogPostId { get; private set; }
-    public string Message { get; private set; }
+    public Guid PublishedBlogPostId { get; set; }
+    public string Message { get; set; }
 }

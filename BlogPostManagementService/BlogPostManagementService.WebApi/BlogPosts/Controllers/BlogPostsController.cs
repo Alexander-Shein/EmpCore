@@ -97,7 +97,7 @@ public class BlogPostsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("published-blog-posts/{blogPostId}")]
+    [HttpPut("/v{version}/published-blog-posts/{blogPostId}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(List<Failure>), StatusCodes.Status422UnprocessableEntity)]

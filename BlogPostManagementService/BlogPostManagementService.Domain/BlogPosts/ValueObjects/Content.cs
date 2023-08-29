@@ -5,7 +5,7 @@ namespace BlogPostManagementService.Domain.BlogPosts.ValueObjects;
 
 public class Content : ValueObject
 {
-    private const int MinLength = 1000;
+    private const int MinLength = 100;
     private const int MaxLenght = 100_000;
     private static readonly IEnumerable<string> BlacklistedWorlds = new List<string> { "Word1", "Word2", "Word3" };
 
@@ -13,6 +13,10 @@ public class Content : ValueObject
     public IReadOnlyList<EmbeddedResource> EmbeddedResources => _embeddedResources.ToList();
     private List<EmbeddedResource> _embeddedResources;
 
+    private Content(string text) : this(text, Enumerable.Empty<EmbeddedResource>())
+    {
+    }
+    
     private Content(string text, IEnumerable<EmbeddedResource> embeddedResources)
     {
         Text = text;

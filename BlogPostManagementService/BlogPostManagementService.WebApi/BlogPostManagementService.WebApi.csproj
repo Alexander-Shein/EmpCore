@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\CoreLibs\Crosscutting\EmpCore.Crosscutting.DistributedCache\EmpCore.Crosscutting.DistributedCache.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Infrastructure\EmpCore.Infrastructure.MessageBus\EmpCore.Infrastructure.MessageBus.CAP.csproj" />
     <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.Api\EmpCore.Api.csproj" />
+    <ProjectReference Include="..\..\CoreLibs\Presentation\EmpCore.WebApi.Swagger\EmpCore.WebApi.Swagger.csproj" />
     <ProjectReference Include="..\BlogPostManagementService.Application\BlogPostManagementService.Application.csproj" />
   </ItemGroup>
 

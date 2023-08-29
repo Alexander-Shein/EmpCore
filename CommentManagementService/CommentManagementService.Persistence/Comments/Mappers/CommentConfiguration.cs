@@ -21,6 +21,11 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
             .WithMany()
             .HasForeignKey("CommentorId");
 
+        builder
+            .HasOne(x => x.ParentComment)
+            .WithMany()
+            .HasForeignKey("ParentCommentId");
+
         builder.OwnsOne(p => p.Message, c =>
         {
             c.Property(x => x.Value).HasColumnName("Message").HasColumnType("NVARCHAR(1024)").IsRequired();
