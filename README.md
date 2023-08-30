@@ -5,14 +5,22 @@ I use Distributed Event-Based Clean Domain Centric Arhitecture including:
 2) CQRS patterns
 3) 2 DataBases: for ReadOnly and OLTP 
 
-Note: There're no layers for QueryStack. It returns data fast with Dapper
-Note: DomainStack uses EntityFrameworkCore
-Note: Redis Distributed Cache is configured
-Note: CAP with Azure Message Bus is configured to communicate between Microservices
-Note: Azure AD with OAuth2 + OpenID protocols using JWT totens is configured
-Note: Rate Limiting is configured
-Note: Docker containers with Azure DevOps Pipelines are configured to deploy containers to Azure Container Registry and Azure Kubenetes Service
-Note: 
+- There're no layers for QueryStack. It returns data fast with Dapper
+
+- DomainStack uses EntityFrameworkCore
+
+- Redis Distributed Cache is configured
+
+- CAP with Azure Message Bus is configured to communicate between Microservices
+
+- Azure AD with OAuth2 + OpenID protocols using JWT totens is configured
+
+- Rate Limiting is configured
+
+- Docker containers with Azure DevOps Pipelines are configured to deploy containers to Azure Container Registry and Azure Kubenetes Service
+
+- Other features
+
 
 Two Microservices are implemented:
 BlogPostManagement: https://github.com/Alexander-Shein/BlogPostManagement
