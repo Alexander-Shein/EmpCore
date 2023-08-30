@@ -11,7 +11,7 @@ I use Distributed Event-Based Clean Domain Centric Arhitecture including:
 
 - Redis Distributed Cache is configured
 
-- CAP with Azure Message Bus is configured to communicate between Microservices
+- CAP with Azure Service Bus is configured to communicate between Microservices
 
 - Azure AD with OAuth2 + OpenID protocols using JWT totens is configured
 
