@@ -51,6 +51,9 @@ public class Result
     public static Result Failure(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
     public static Result<T> Failure<T>(Failure failure) => new(failure);
     public static Result<T> Failure<T>(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
+    
+    
+    public static implicit operator Result(Failure failure) => Failure(failure);
 }
 
 public class Result<T> : Result
@@ -83,4 +86,5 @@ public class Result<T> : Result
         
     public static implicit operator Result<T>(List<Failure> failures) => Failure<T>(failures);
     public static implicit operator Result<T>(Failure[] failures) => Failure<T>(failures);
+    public static implicit operator Result<T>(Failure failure) => Failure<T>(failure);
 }

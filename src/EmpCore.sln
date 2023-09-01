@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmpCore.Domain", "Domain\Em
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.WebApi.Swagger", "Presentation\EmpCore.WebApi.Swagger\EmpCore.WebApi.Swagger.csproj", "{933B171F-C7EF-46B2-A0FA-203392C58040}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpCore.QueryStack", "QueryStack\EmpCore.QueryStack\EmpCore.QueryStack.csproj", "{DB5FDE52-8C96-4A90-B04C-57B331797DF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{933B171F-C7EF-46B2-A0FA-203392C58040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{933B171F-C7EF-46B2-A0FA-203392C58040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{933B171F-C7EF-46B2-A0FA-203392C58040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB5FDE52-8C96-4A90-B04C-57B331797DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB5FDE52-8C96-4A90-B04C-57B331797DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB5FDE52-8C96-4A90-B04C-57B331797DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB5FDE52-8C96-4A90-B04C-57B331797DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{82818B4F-5488-4CBA-9629-6AB80FD766FB} = {15860654-66CA-4416-A2E5-E6F6A728C9B2}
 		{933657F1-1FDA-40C9-A2F2-AD750B40098D} = {5487638C-DCC2-44F2-9CD7-1086762BBFF4}
 		{933B171F-C7EF-46B2-A0FA-203392C58040} = {84C94709-C5F7-4FBB-88B7-4EFC63A43842}
+		{DB5FDE52-8C96-4A90-B04C-57B331797DF8} = {3C5741C4-8BB4-4087-9E27-85F9468F82FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E084B3E1-AF53-4209-B2F4-8DB114E645A6}

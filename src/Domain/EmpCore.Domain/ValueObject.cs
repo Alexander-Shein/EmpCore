@@ -1,5 +1,6 @@
 ﻿namespace EmpCore.Domain;
 
+[Serializable]
 public abstract class ValueObject : IComparable, IComparable<ValueObject>
 {
     private int? _cachedHashCode;

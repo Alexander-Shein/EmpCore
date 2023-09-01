@@ -4,7 +4,6 @@ public class Failure : ValueObject
 {
     private const string AllowedCodeCharacters = "abcdefghijklmnopqrstuvwxyz_1234567890";
 
-
     public string Code { get; }
     public string Message { get; }
 

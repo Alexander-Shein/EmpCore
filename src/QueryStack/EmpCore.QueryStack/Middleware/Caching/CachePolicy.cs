@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace EmpCore.Application.Middleware.Caching;
+namespace EmpCore.QueryStack.Middleware.Caching;
 
 public abstract class CachePolicy<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

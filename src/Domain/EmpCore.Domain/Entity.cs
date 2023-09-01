@@ -5,9 +5,7 @@ public abstract class Entity<TId> : IComparable, IComparable<Entity<TId>>
 {
     public virtual TId Id { get; protected set; }
 
-    protected Entity()
-    {
-    }
+    protected Entity() { }
 
     protected Entity(TId id)
     {

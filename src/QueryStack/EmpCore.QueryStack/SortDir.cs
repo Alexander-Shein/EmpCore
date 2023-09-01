@@ -1,4 +1,4 @@
-﻿namespace EmpCore.Application.Queries
+﻿namespace EmpCore.QueryStack
 {
     public enum SortDir : byte
     {

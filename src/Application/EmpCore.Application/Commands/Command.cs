@@ -1,6 +1,6 @@
 namespace EmpCore.Application.Commands;
 
-public class Command
+public abstract class Command
 {
-    public DateTime CreatedAt { get; } = DateTime.UtcNow;
+    public DateTime SentAt { get; } = DateTime.UtcNow;
 }

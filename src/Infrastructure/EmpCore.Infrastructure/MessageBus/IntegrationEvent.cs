@@ -1,7 +1,7 @@
 ﻿namespace EmpCore.Infrastructure.MessageBus;
 
-public class ApplicationEvent
+public class IntegrationEvent
 {
     public string EventName { get; }
-    public DateTime CreatedAt { get; } = DateTime.UtcNow;
+    public DateTime RaisedAt { get; } = DateTime.UtcNow;
 }

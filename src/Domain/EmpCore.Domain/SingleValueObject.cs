@@ -1,5 +1,6 @@
 ﻿namespace EmpCore.Domain;
 
+[Serializable]
 public abstract class SingleValueObject<T> : ValueObject
     where T : IComparable
 {

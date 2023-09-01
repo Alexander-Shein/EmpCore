@@ -1,6 +1,7 @@
 ﻿namespace EmpCore.Domain;
 
+[Serializable]
 public abstract class DomainEvent
 {
-    public DateTime CreatedAt { get; } = DateTime.UtcNow;
+    public DateTime RaisedAt { get; } = DateTime.UtcNow;
 }

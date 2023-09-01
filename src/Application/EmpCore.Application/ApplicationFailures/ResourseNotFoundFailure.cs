@@ -1,14 +1,13 @@
 ﻿using EmpCore.Domain;
 
-namespace EmpCore.Application.ApplicationFailures
+namespace EmpCore.Application.ApplicationFailures;
+
+public class ResourceNotFoundFailure : Failure
 {
-    public class ResourceNotFoundFailure : Failure
-    {
-        private const string ErrorCode = "resource_not_found";
-        private const string ErrorMessage = "Resource not found.";
+    private const string ErrorCode = "resource_not_found";
+    private const string ErrorMessage = "Resource not found.";
 
-        public static readonly ResourceNotFoundFailure Instance = new();
+    public static readonly ResourceNotFoundFailure Instance = new();
 
-        private ResourceNotFoundFailure() : base(ErrorCode, ErrorMessage) { }
-    }
+    private ResourceNotFoundFailure() : base(ErrorCode, ErrorMessage) { }
 }

@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using System.Text.Json;
+using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Text.Json;
 
-namespace EmpCore.Application.Middleware.Caching;
+namespace EmpCore.QueryStack.Middleware.Caching;
 
 public class CachingPipelineBehavior<TRequest, TResponse> :
     IPipelineBehavior<TRequest, TResponse>
