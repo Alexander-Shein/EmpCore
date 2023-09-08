@@ -24,6 +24,7 @@ public class Result
     public IReadOnlyList<Failure> Failures => _failures.ToList();
     private readonly List<Failure> _failures = new();
 
+
     public bool IsFailure => _failures.Any();
     public bool IsSuccess => !IsFailure;
 
@@ -43,17 +44,17 @@ public class Result
     }
 
 
-    public static Result Success() => SuccessInstance;
-    public static Result<T> Success<T>(T value) => new(value);
+    public static Result Ok() => SuccessInstance;
+    public static Result<T> Ok<T>(T value) => new(value);
 
 
-    public static Result Failure(Failure failure) => new(failure);
-    public static Result Failure(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
-    public static Result<T> Failure<T>(Failure failure) => new(failure);
-    public static Result<T> Failure<T>(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
+    public static Result Fail(Failure failure) => new(failure);
+    public static Result Fail(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
+    public static Result<T> Fail<T>(Failure failure) => new(failure);
+    public static Result<T> Fail<T>(IEnumerable<Failure> failures) => new(failures?.ToArray() ?? Array.Empty<Failure>());
     
     
-    public static implicit operator Result(Failure failure) => Failure(failure);
+    public static implicit operator Result(Failure failure) => Fail(failure);
 }
 
 public class Result<T> : Result
@@ -82,9 +83,9 @@ public class Result<T> : Result
     }
     
     public static implicit operator T(Result<T> result) => result == null ? default : result.Value;
-    public static implicit operator Result<T>(T value) => Success(value);
+    public static implicit operator Result<T>(T value) => Ok(value);
         
-    public static implicit operator Result<T>(List<Failure> failures) => Failure<T>(failures);
-    public static implicit operator Result<T>(Failure[] failures) => Failure<T>(failures);
-    public static implicit operator Result<T>(Failure failure) => Failure<T>(failure);
+    public static implicit operator Result<T>(List<Failure> failures) => Fail<T>(failures);
+    public static implicit operator Result<T>(Failure[] failures) => Fail<T>(failures);
+    public static implicit operator Result<T>(Failure failure) => Fail<T>(failure);
 }

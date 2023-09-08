@@ -1,7 +1,6 @@
-﻿namespace EmpCore.QueryStack
+﻿namespace EmpCore.QueryStack;
+
+public enum SortDir : byte
 {
-    public enum SortDir : byte
-    {
-        Asc = 1, Desc = 2
-    }
+    Asc = 1, Desc = 2
 }

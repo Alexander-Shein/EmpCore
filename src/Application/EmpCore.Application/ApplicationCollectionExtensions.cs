@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using EmpCore.Application.Middleware.DomainEventsDispatcher;
+using EmpCore.Application.Middleware.Transactions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EmpCore.Application;
@@ -12,7 +12,7 @@ public static class ApplicationCollectionExtensions
     {
         services
             .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssemblies))
-            .AddDomainEventsDispatcherPipeline();
+            .AddUnitOfWorkBehavior();
         
         return services;
     }

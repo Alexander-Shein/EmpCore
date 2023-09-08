@@ -4,5 +4,5 @@ namespace EmpCore.Infrastructure.Persistence;
 
 public interface IUnitOfWork : IDisposable
 {
-    Task<Result> SaveAsync();
+    Task<Result> SaveAsync(CancellationToken cancellationToken);
 }

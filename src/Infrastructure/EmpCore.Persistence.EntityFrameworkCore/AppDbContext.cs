@@ -3,16 +3,17 @@ using System.Reflection;
 
 namespace EmpCore.Persistence.EntityFrameworkCore;
 
-public class ApplicationDbContext : DbContext
+public class AppDbContext : DbContext
 {
     private readonly string _connectionString;
     private readonly Assembly _persistenceAssembly;
 
-    public ApplicationDbContext() : this("MIGRATION", Assembly.GetExecutingAssembly())
+    public AppDbContext()
     {
+        _persistenceAssembly = Assembly.GetExecutingAssembly();
     }
 
-    public ApplicationDbContext(string connectionString, Assembly persistenceAssembly)
+    public AppDbContext(string connectionString, Assembly persistenceAssembly)
     {
         if (String.IsNullOrWhiteSpace(connectionString))
         {
@@ -32,7 +33,8 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(_persistenceAssembly);
-
+        
         base.OnModelCreating(modelBuilder);
     }
+
 }

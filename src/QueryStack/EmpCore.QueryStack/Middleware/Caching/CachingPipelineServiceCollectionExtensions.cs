@@ -17,14 +17,14 @@ public static class CachingPipelineServiceCollectionExtensions
     
     private static IServiceCollection AddCachingPolicies(this IServiceCollection services, Assembly queryStackAssembly)
     {
-        var interfaceType = typeof(CachePolicy<,>);
+        var baseType = typeof(CachePolicy<,>);
 
         foreach (var type in queryStackAssembly
                      .GetTypes()
                      .Where(t => t.IsClass && !t.IsAbstract)
-                     .Where(t => t.IsAssignableToGenericType(interfaceType)))
+                     .Where(t => t.IsAssignableToGenericType(baseType)))
         {
-            var contract = interfaceType.MakeGenericType(
+            var contract = baseType.MakeGenericType(
                 type.BaseType.GenericTypeArguments[0], type.BaseType.GenericTypeArguments[1]);
 
             services.AddTransient(contract, type);

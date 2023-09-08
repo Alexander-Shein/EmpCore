@@ -14,7 +14,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\EmpCore.Domain\EmpCore.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\EmpCore.Infrastructure\EmpCore.Infrastructure.csproj" />
   </ItemGroup>
+
 
 
 </Project>

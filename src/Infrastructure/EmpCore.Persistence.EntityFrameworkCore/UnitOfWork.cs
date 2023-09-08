@@ -1,25 +1,44 @@
 ﻿using EmpCore.Domain;
 using EmpCore.Infrastructure.Persistence;
+using MediatR;
 
 namespace EmpCore.Persistence.EntityFrameworkCore;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ApplicationDbContext _applicationDbContext;
+    private readonly IMediator _mediator;
+    private readonly AppDbContext _appDbContext;
 
-    public UnitOfWork(ApplicationDbContext applicationDbContext)
+    public UnitOfWork(AppDbContext appDbContext, IMediator mediator)
     {
-        _applicationDbContext = applicationDbContext ?? throw new ArgumentNullException(nameof(applicationDbContext));
+        _appDbContext = appDbContext ?? throw new ArgumentNullException(nameof(appDbContext));
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
     }
 
-    public async Task<Result> SaveAsync()
+    public async Task<Result> SaveAsync(CancellationToken ct)
     {
-        await _applicationDbContext.SaveChangesAsync().ConfigureAwait(false);
-        return Result.Success();
+        var aggregateRoots = _appDbContext.ChangeTracker
+            .Entries()
+            .Where(x => x.Entity.GetType().GetGenericTypeDefinition() == typeof(AggregateRoot<>))
+            .ToList();
+
+        await _appDbContext.SaveChangesAsync(ct).ConfigureAwait(false);
+
+        foreach (dynamic aggregateRoot in aggregateRoots)
+        {
+            foreach (IReadOnlyList<DomainEvent> domainEvent in aggregateRoot.DomainEvents)
+            {
+                await _mediator.Publish(domainEvent).ConfigureAwait(false);
+            }
+            
+            aggregateRoot.ClearDomainEvents();
+        }
+
+        return Result.Ok();
     }
 
     public void Dispose()
     {
-        _applicationDbContext.Dispose();
+        _appDbContext.Dispose();
     }
 }

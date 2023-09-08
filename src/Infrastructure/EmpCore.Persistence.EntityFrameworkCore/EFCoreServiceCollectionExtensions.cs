@@ -7,17 +7,17 @@ namespace EmpCore.Persistence.EntityFrameworkCore;
 
 public static class EFCoreServiceCollectionExtensions
 {
-    public static IServiceCollection AddApplicationDbContext(
+    public static IServiceCollection AddAppDbContext(
         this IServiceCollection services,
         string connectionString,
         Assembly persistenceAssembly)
     {
         services
-            .AddScoped(_ => new ApplicationDbContext(connectionString, persistenceAssembly))
+            .AddScoped(_ => new AppDbContext(connectionString, persistenceAssembly))
             .AddScoped<IUnitOfWork, UnitOfWork>()
             .AddDomainRepositories(persistenceAssembly);
 
-        new ApplicationDbContext(connectionString, persistenceAssembly).Database.Migrate();
+        new AppDbContext(connectionString, persistenceAssembly).Database.Migrate();
 
         return services;
     }

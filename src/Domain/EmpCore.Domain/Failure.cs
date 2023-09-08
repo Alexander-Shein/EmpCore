@@ -21,7 +21,7 @@ public class Failure : ValueObject
         const string EmptyMessage = "Code cannot be empty or consist only of white-space characters.";
         const string InvalidFormatMessage = "Code must consist only of lowercase letters, digits and underscores.";
         const string InvalidFirstCharMessage = "Code cannot start with '_'.";
-        const string InvalidLastCharMessage = "Code cannot start with '_'.";
+        const string InvalidLastCharMessage = "Code cannot end with '_'.";
 
         if (String.IsNullOrWhiteSpace(code))
         {

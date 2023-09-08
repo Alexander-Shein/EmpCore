@@ -1,6 +1,6 @@
 using EmpCore.Domain;
 
-namespace EmpCore.Application.ApplicationFailures;
+namespace EmpCore.Application.Failures;
 
 public class ResourceWithIdNotFoundFailure : Failure
 {
