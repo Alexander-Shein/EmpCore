@@ -39,8 +39,9 @@ There's a IMessageBus implementation: `CAP library` which uses `Azure Message Bu
 
 # Presentation solution folder
 This folder contains `Presentation Layer` projects. Here you can find projects for a WebApi but it can be gRPC, UI, WCF etc.
+The responsibility of the `PresentationLayer` is to map http requests to `Commands` and `Queries` and send them to the `Application Layer`.
 
-It contains middleware for WebApi: `RateLimiting`, `Security` (Azure AD with OAuth2 + OpenID protocols using JWT totens), `Slugify` urls etc.
+It also contains middleware for WebApi: `RateLimiting`, `Security` (Azure AD with OAuth2 + OpenID protocols using JWT totens), `Slugify` urls etc.
 
 # Crosscutting solution folder
 This folder contains projects with services which are used across all the layers. For example `caching`, `logging` etc.
