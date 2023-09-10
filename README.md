@@ -26,14 +26,28 @@ There're base classes for the following patterns from `Domain Driven Design`: `V
 This folder contains the next layer from `Clean Layers`: `Aplication Layer` which contains software use cases.
 Use cases ussualy are `commands` and `queries` following `CQRS` patterns. This layer can handle `IntegrationEvents` from other services as well.
 
+Application layer uses `IMediatr` library to send `Commands` and `Queries`.
+
 # Infrastructure solution folder
 This folder contains projects for `Infrastructure Layer`. It contains implementation details of external services like DataBases repositories, File Storages, APIs, Message Bus etc.
 (P.S. Ussualy for DataBase repositories a new project is created but actually it isn't an another layer. It's a `Infrastructure Layer` as well. Because it's big so ussualy it's better to create a new project for it.)
+
+It contains base classes for a repository pattern from `Domain Driven Design`. A `Repository` can load or save `Aggregate Roots` only. 
+It contains `IUnitOfWork` patten as well.
+
+There's a IMessageBus implementation: `CAP library` which uses `Azure Message Bus` to publish/subscribe `integration events` between `Microservices`.
 
 # Presentation solution folder
 This folder contains `Presentation Layer` projects. Here you can find projects for a WebApi but it can be gRPC, UI, WCF etc.
 
 # QueryStack solution folder
+This folder contains projects for `Queries`. In the current implementation the `CQRS` patterns are applied which means that commands and queries are splitted. I use abstractions from the layered arhitecture for `DomainStack` for `commands`. For `QueryStack` we don't need complex layers. We just need to return data as fast as possible. `QueryStack` goes outside of the arhitecture without any layers.
+
+- `DomainStack` uses EntityFrameworkCore in repositories
+- `QueryStack` uses fast Dapper
+
+P.S. Because of using `CQRS` it allows me to use different connection strings for `QueryStack` queries and `DomainStack` repositories. It allows to have 2 different DataBases: OLTPDataBase for cammands and ReadOnlyDataBase for queries. I can significantly improve perfomance without changing code.
+
 
 
 1) Domain Driven Design
