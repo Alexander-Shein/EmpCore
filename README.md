@@ -40,6 +40,13 @@ There's a IMessageBus implementation: `CAP library` which uses `Azure Message Bu
 # Presentation solution folder
 This folder contains `Presentation Layer` projects. Here you can find projects for a WebApi but it can be gRPC, UI, WCF etc.
 
+It contains middleware for WebApi: `RateLimiting`, `Security` (Azure AD with OAuth2 + OpenID protocols using JWT totens), `Slugify` urls etc.
+
+# Crosscutting solution folder
+This folder contains projects with services which are used across all the layers. For example `caching`, `logging` etc.
+
+`Redis Distributed Cache` is configured.
+
 # QueryStack solution folder
 This folder contains projects for `Queries`. In the current implementation the `CQRS` patterns are applied which means that commands and queries are splitted. I use abstractions from the layered arhitecture for `DomainStack` for `commands`. For `QueryStack` we don't need complex layers. We just need to return data as fast as possible. `QueryStack` goes outside of the arhitecture without any layers.
 
@@ -48,37 +55,20 @@ This folder contains projects for `Queries`. In the current implementation the `
 
 P.S. Because of using `CQRS` it allows me to use different connection strings for `QueryStack` queries and `DomainStack` repositories. It allows to have 2 different DataBases: OLTPDataBase for cammands and ReadOnlyDataBase for queries. I can significantly improve perfomance without changing code.
 
-
-
-1) Domain Driven Design
-2) CQRS patterns
-3) 2 DataBases: for ReadOnly and OLTP 
-
-- There're no layers for QueryStack. It returns data fast with Dapper
-
-- DomainStack uses EntityFrameworkCore
-
-- Redis Distributed Cache is configured
-
-- CAP with Azure Service Bus is configured to communicate between Microservices
-
-- Azure AD with OAuth2 + OpenID protocols using JWT totens is configured
-
-- Rate Limiting is configured
-
-- Docker containers with Azure DevOps Pipelines are configured to deploy containers to Azure Container Registry and Azure Kubenetes Service
-
-- Other features
-
+# Docker containers with Azure DevOps Pipelines are configured to deploy containers to Azure Container Registry and Azure Kubenetes Service
 
 Two Microservices are implemented:
 
-- BlogPostManagement: https://github.com/Alexander-Shein/BlogPostManagement
+# BlogPostManagement
+Details: https://github.com/Alexander-Shein/BlogPostManagement
 
 Deployed here: http://blog-post-management.polandcentral.cloudapp.azure.com/swagger/index.html
 
-- CommentManagement: https://github.com/Alexander-Shein/CommentManagement
+# CommentManagement
+Details: https://github.com/Alexander-Shein/CommentManagement
 
 Deployed here: http://comment-management.polandcentral.cloudapp.azure.com/swagger/index.html
 
-- BlogPostManagement.Contracts repository with events: https://github.com/Alexander-Shein/BlogPostManagement.Contracts
+# BlogPostManagement.Contracts
+
+This repository contains BlogPost Integration Events: https://github.com/Alexander-Shein/BlogPostManagement.Contracts. CommentManagement Service is subscribed to these events.
