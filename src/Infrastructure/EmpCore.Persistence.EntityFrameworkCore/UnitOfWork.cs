@@ -19,18 +19,19 @@ public class UnitOfWork : IUnitOfWork
     {
         var aggregateRoots = _appDbContext.ChangeTracker
             .Entries()
-            .Where(x => x.Entity.GetType().GetGenericTypeDefinition() == typeof(AggregateRoot<>))
+            .Where(x => IsAssignableToGenericType(x.Entity.GetType(), typeof(AggregateRoot<>)))
+            .Select(x => x.Entity)
             .ToList();
 
         await _appDbContext.SaveChangesAsync(ct).ConfigureAwait(false);
 
         foreach (dynamic aggregateRoot in aggregateRoots)
         {
-            foreach (IReadOnlyList<DomainEvent> domainEvent in aggregateRoot.DomainEvents)
+            foreach (var domainEvent in aggregateRoot.DomainEvents)
             {
                 await _mediator.Publish(domainEvent).ConfigureAwait(false);
             }
-            
+
             aggregateRoot.ClearDomainEvents();
         }
 
@@ -40,5 +41,24 @@ public class UnitOfWork : IUnitOfWork
     public void Dispose()
     {
         _appDbContext.Dispose();
+    }
+
+    private static bool IsAssignableToGenericType(Type givenType, Type genericType)
+    {
+        var interfaceTypes = givenType.GetInterfaces();
+
+        foreach (var it in interfaceTypes)
+        {
+            if (it.IsGenericType && it.GetGenericTypeDefinition() == genericType)
+                return true;
+        }
+
+        if (givenType.IsGenericType && givenType.GetGenericTypeDefinition() == genericType)
+            return true;
+
+        Type baseType = givenType.BaseType;
+        if (baseType == null) return false;
+
+        return IsAssignableToGenericType(baseType, genericType);
     }
 }
