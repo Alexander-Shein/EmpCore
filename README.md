@@ -28,6 +28,8 @@ Use cases ussualy are `commands` and `queries` following `CQRS` patterns. This l
 
 Application layer uses `IMediatr` library to send `Commands` and `Queries`.
 
+If a domain event is raised we can handle it in application layer and map to an integration event and send it to Azure Message Topic so other services can subscribe to it.
+
 # Infrastructure solution folder
 This folder contains projects for `Infrastructure Layer`. It contains implementation details of external services like DataBases repositories, File Storages, APIs, Message Bus etc.
 (P.S. Ussualy for DataBase repositories a new project is created but actually it isn't an another layer. It's a `Infrastructure Layer` as well. Because it's big so ussualy it's better to create a new project for it.)
