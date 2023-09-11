@@ -65,12 +65,12 @@ Two Microservices are implemented:
 # BlogPostManagement
 Details: https://github.com/Alexander-Shein/BlogPostManagement
 
-Deployed here: http://blog-post-management.polandcentral.cloudapp.azure.com/swagger/index.html
+Deployed here: https://blog-post-management.polandcentral.cloudapp.azure.com/swagger/index.html
 
 # CommentManagement
 Details: https://github.com/Alexander-Shein/CommentManagement
 
-Deployed here: http://comment-management.polandcentral.cloudapp.azure.com/swagger/index.html
+Deployed here: https://comment-management.polandcentral.cloudapp.azure.com/swagger/index.html
 
 # BlogPostManagement.Contracts
 
