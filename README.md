@@ -58,6 +58,8 @@ P.S. Because of using `CQRS` it allows me to use different connection strings fo
 
 # Docker containers with Azure DevOps Pipelines are configured to deploy containers to Azure Container Registry and Azure Kubenetes Service
 
+![2023-09-11_13-51-34](https://github.com/Alexander-Shein/EmpCore/assets/7516186/26192087-5cb6-47eb-ae9f-66704b9b0574)
+
 Two Microservices are implemented:
 
 # BlogPostManagement
