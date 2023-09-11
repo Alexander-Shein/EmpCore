@@ -70,7 +70,7 @@ Deployed here: https://blog-post-management.polandcentral.cloudapp.azure.com/swa
 # CommentManagement
 Details: https://github.com/Alexander-Shein/CommentManagement
 
-Deployed here: https://comment-management.polandcentral.cloudapp.azure.com/swagger/index.html
+Deployed here: http://comment-management.polandcentral.cloudapp.azure.com/swagger/index.html
 
 # BlogPostManagement.Contracts
 
