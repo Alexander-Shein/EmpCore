@@ -35,7 +35,7 @@ This layer can handle `Integration Events` from other services as well. `Integra
 If a domain event is raised we can handle it in application layer and map to an integration event and send it to Azure Message Topic so other services can subscribe to it.
 
 # Infrastructure solution folder
-This folder contains projects for `Infrastructure Layer`. It contains implementation details of external services like DataBases repositories, File Storages, APIs, Message Bus etc.
+This folder contains projects for `Infrastructure Layer`. It contains implementation details of external services like DataBase repositories, File Storages, APIs, Message Bus etc.
 (P.S. Ussualy for DataBase repositories a new project is created but actually it isn't an another layer. It's a `Infrastructure Layer` as well. Because it's big so ussualy it's better to create a new project for it.)
 
 It contains base classes for a repository pattern from `Domain Driven Design`. A `Repository` can load or save `Aggregate Roots` only. 
