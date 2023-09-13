@@ -3,7 +3,7 @@
 Distributed Event-Based CQRS Clean Domain Centric Arhitecture
 
 # Clean Architecture
-`The Clean Architecture` is the latest from the series of layered architectures. Timeline:
+`The Clean Architecture` is used because it's the latest from the series of layered architectures. Layered architecture development timeline:
 `Classic 3 Layers DataBase Centric` -> `Hexagonal Domain Centric` -> `Onion Domain Centric` -> `Clean Domain Centric Architecture`
 
 Clean architecture diagram:
