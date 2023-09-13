@@ -12,7 +12,9 @@ Clean architecture diagram:
 There're 6 solution folders in this repository:
 
 # Domain solution folder
-This folder contains projects for `Central Domain Layer`. This layer contains all business logic. This is a heart of software.
+This folder contains projects for `Central Domain Layer`. This layer contains all the business logic. This is a heart of software.
+
+Domain models must be encapsulated and always in a valid state.
 
 There're base classes for the following patterns from `Domain Driven Design`: `Value Objects`, `Entities`, `Aggregate Roots`, `Domain Events` etc.
 - `Value Objects` (VO): Immutable objects compared by values. They can't be changed. If 2 value objects have the same values - they are equal. VO has no Id.
@@ -23,10 +25,12 @@ There're base classes for the following patterns from `Domain Driven Design`: `V
 `Domain` project contains some helper classes like `Result` and `Failure`. We need these classes in order to avoid return result or error and to avoid throwing exceptions when business rules are violated. Because throwing exceptions when business rules are violated is a bad practice. 
 
 # Application solution folder
-This folder contains the next layer from `Clean Layers`: `Aplication Layer` which contains software use cases.
-Use cases ussualy are `commands` and `queries` following `CQRS` patterns. This layer can handle `IntegrationEvents` from other services as well.
+This folder contains the next layer from `Clean Layers`: `Aplication Layer` which contains use cases.
+Use cases ussualy are `commands` and `queries` following `CQRS` patterns.
 
-Application layer uses `IMediatr` library to send `Commands` and `Queries`.
+This layer can handle `Integration Events` from other services as well. `Integration events` are used to communicate between `Microservices`. Domain events are used to connect parts inside a Microservice. If you need to publish an event outside you need to map `Domain Event` to `Integration Event` and send it via `IMessageBus`.
+
+`Application layer` uses `IMediatr` library to send `Commands` and `Queries`.
 
 If a domain event is raised we can handle it in application layer and map to an integration event and send it to Azure Message Topic so other services can subscribe to it.
 
