@@ -54,6 +54,8 @@ This folder contains projects with services which are used across all the layers
 
 `Redis Distributed Cache` is configured.
 
+There're generic extention methods for microsoft `IDistributedCache` interface to set and get objects instead of strings and binaries.
+
 # QueryStack solution folder
 This folder contains projects for `Queries`. In the current implementation the `CQRS` patterns are applied which means that commands and queries are splitted. I use abstractions from the layered arhitecture for `DomainStack` for `commands`. For `QueryStack` we don't need complex layers. We just need to return data as fast as possible. `QueryStack` goes outside of the arhitecture without any layers.
 
