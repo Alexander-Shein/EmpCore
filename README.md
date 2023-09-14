@@ -56,6 +56,10 @@ This folder contains projects with services which are used across all the layers
 
 There're generic extention methods for microsoft `IDistributedCache` interface to set and get objects instead of strings and binaries.
 
+There's a middleware for QueryStack to cache data: https://github.com/Alexander-Shein/EmpCore/tree/main/src/QueryStack/EmpCore.QueryStack/Middleware/Caching. You need to create a cache policy and your query will be cached automatically. Example: https://github.com/Alexander-Shein/BlogPostManagement/blob/main/src/BlogPostManagementService.Application/BlogPosts/Queries/SearchBlogPosts/CachePolicy.cs
+
+
+
 # QueryStack solution folder
 This folder contains projects for `Queries`. In the current implementation the `CQRS` patterns are applied which means that commands and queries are splitted. I use abstractions from the layered arhitecture for `DomainStack` for `commands`. For `QueryStack` we don't need complex layers. We just need to return data as fast as possible. `QueryStack` goes outside of the arhitecture without any layers.
 
