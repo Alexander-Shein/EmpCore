@@ -1,4 +1,5 @@
-﻿using EmpCore.Domain;
+﻿using System.Collections.Concurrent;
+using EmpCore.Domain;
 using EmpCore.Infrastructure.Persistence;
 using MediatR;
 
@@ -8,6 +9,10 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly IMediator _mediator;
     private readonly AppDbContext _appDbContext;
+
+    private readonly ConcurrentDictionary<DomainEvent, byte> _sentDomainEvents = new();
+    
+    private readonly Type _aggregateRootBaseType = typeof(AggregateRoot<>);
 
     public UnitOfWork(AppDbContext appDbContext, IMediator mediator)
     {
@@ -19,7 +24,7 @@ public class UnitOfWork : IUnitOfWork
     {
         var aggregateRoots = _appDbContext.ChangeTracker
             .Entries()
-            .Where(x => IsAssignableToGenericType(x.Entity.GetType(), typeof(AggregateRoot<>)))
+            .Where(x => IsAssignableToGenericType(x.Entity.GetType(), _aggregateRootBaseType))
             .Select(x => x.Entity)
             .ToList();
 
@@ -29,10 +34,9 @@ public class UnitOfWork : IUnitOfWork
         {
             foreach (var domainEvent in aggregateRoot.DomainEvents)
             {
+                if (!_sentDomainEvents.TryAdd(domainEvent, 0)) continue;
                 await _mediator.Publish(domainEvent).ConfigureAwait(false);
             }
-
-            aggregateRoot.ClearDomainEvents();
         }
 
         return Result.Ok();

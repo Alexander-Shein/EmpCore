@@ -1,5 +1,6 @@
 ﻿namespace EmpCore.Domain;
 
+[Serializable]
 public class Failure : ValueObject
 {
     private const string AllowedCodeCharacters = "abcdefghijklmnopqrstuvwxyz_1234567890";

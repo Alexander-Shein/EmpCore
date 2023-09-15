@@ -11,8 +11,5 @@ public abstract class AggregateRoot<IId> : Entity<IId>
         _domainEvents.Add(domainEvent ?? throw new ArgumentNullException(nameof(domainEvent)));
     }
 
-    public void ClearDomainEvents ()
-    {
-        _domainEvents.Clear();
-    }
+    protected virtual void ReplayDomainEvents() { }
 }
