@@ -22,6 +22,22 @@ There're base classes for the following patterns from `Domain Driven Design`: `V
 - `Aggregate Roots`: An Aggregate Root is an entity which encapsulates behavior for a cluster of entities, value objects. It combines them to a single indivisible object. It means if you delete an aggregate root all the child entities must be deleted as well. Only an Aggregate Root can be loaded from repository.
 - `Domain Event`: this is a response to commands from `Domain Layer`. You can subscribe to these events to add more behavior. Ussualy `Domain Events` are used to communicate between different `Aggregate Roots`. It follows Open-Closed principle from Solid. If you need to publish a domain event outside of a `Microservice` you need to map a `Domain Event` to an `IntegrationEvent` and send it via `IMessageBus` from `Infrastructure Layer`. It uses `Azure Message Bus` so other `Microservices` can subscribe to it.
 
+Example of sending a `Domain Event` from an `Aggregate Root` (https://github.com/Alexander-Shein/BlogPostManagement/blob/main/src/BlogPostManagementService.Domain/BlogPosts/BlogPost.cs):
+```csharp
+public Result Publish(AuthorId publishedBy)
+{
+    if (Author.Id != publishedBy) return new BlogPostUpdateForbiddenFailure(Id);
+    if (IsDeleted) return new BlogPostIsDeletedFailure(Id);
+
+    PublishStatus = PublishStatus.Released;
+    PublishDateTime = UpdatedAt = DateTime.UtcNow;
+    
+    RaiseDomainEvent(new BlogPostPublishedDomainEvent(Id, Author.Id, PublishDateTime.Value, Author.FeedbackEmailAddress));
+    return Result.Ok();
+}
+```
+Later in the `UnitOfWork`(https://github.com/Alexander-Shein/EmpCore/blob/main/src/Infrastructure/EmpCore.Persistence.EntityFrameworkCore/UnitOfWork.cs) when a `IUnitOfWork.SaveChangesAsync` is clicked it collects all the raised `Domain events` and sends them via `IMediatr`. There're some handlers in the `Apllication Layer`: https://github.com/Alexander-Shein/BlogPostManagement/tree/main/src/BlogPostManagementService.Application/BlogPosts/DomainEvents. The handlers map `Domain Events` to `Integration Events` and send them via `IMessageBus` so other `Microservices` can subscribe to them.
+
 `Domain` project contains some helper classes like `Result` and `Failure`. We need these classes in order to avoid return result or error and to avoid throwing exceptions when business rules are violated. Because throwing exceptions when business rules are violated is a bad practice. 
 
 # Application solution folder
