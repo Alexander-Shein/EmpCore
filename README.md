@@ -19,6 +19,38 @@ Domain models must be encapsulated and always in a valid state.
 There're base classes for the following patterns from `Domain Driven Design`: `Value Objects`, `Entities`, `Aggregate Roots`, `Domain Events` etc.
 ### `Value Objects` (VO)
 Immutable objects compared by values. They can't be changed. If 2 value objects have the same values - they are equal. VO has no Id.
+
+`SingleValueObject` (https://github.com/Alexander-Shein/EmpCore/blob/main/src/Domain/EmpCore.Domain/SingleValueObject.cs) is used when a VO has a single property. For example:
+
+```csharp
+public class EmailAddress : SingleValueObject<string>
+{
+    public const int MaxLength = 256;
+
+    private EmailAddress(string value) : base(value) { }
+
+    public static Result<EmailAddress> Create(string emailAddress)
+    {
+        emailAddress = emailAddress?.Trim();
+        
+        if (String.IsNullOrWhiteSpace(emailAddress)) return EmptyEmailAddressFailure.Instance; 
+        if (emailAddress.Length > MaxLength) return new EmailAddressMaxLengthExceededFailure(emailAddress.Length);
+
+        // checks if there is only one '@' character
+        // and it's neither the first nor the last character
+        var indexAtSign = emailAddress.IndexOf('@');
+        if (!(indexAtSign > 0
+            && indexAtSign != emailAddress.Length - 1
+            && indexAtSign == emailAddress.LastIndexOf('@')))
+        {
+            return new InvalidEmailAddressFailure(emailAddress);
+        }
+
+        return new EmailAddress(emailAddress.ToUpperInvariant());
+    }
+}
+```
+
 ### `Entities`
 An entity has an identifier. For instance a car can be an entity which is identified by its license plate. The difference with VO is if for example you change a car color from red to green it stays the same object with the same identifier. Color is VO in this case.
 ### `Aggregate Roots`
