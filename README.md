@@ -17,10 +17,14 @@ This folder contains projects for `Central Domain Layer`. This layer contains al
 Domain models must be encapsulated and always in a valid state.
 
 There're base classes for the following patterns from `Domain Driven Design`: `Value Objects`, `Entities`, `Aggregate Roots`, `Domain Events` etc.
-- `Value Objects` (VO): Immutable objects compared by values. They can't be changed. If 2 value objects have the same values - they are equal. VO has no Id.
-- `Entities`: An entity has an identifier. For instance a car can be an entity which is identified by its license plate. The difference with VO is if for example you change a car color from red to green it stays the same object with the same identifier. Color is VO in this case.
-- `Aggregate Roots`: An Aggregate Root is an entity which encapsulates behavior for a cluster of entities, value objects. It combines them to a single indivisible object. It means if you delete an aggregate root all the child entities must be deleted as well. Only an Aggregate Root can be loaded from repository.
-- `Domain Event`: this is a response to commands from `Domain Layer`. You can subscribe to these events to add more behavior. Ussualy `Domain Events` are used to communicate between different `Aggregate Roots`. It follows Open-Closed principle from Solid. If you need to publish a domain event outside of a `Microservice` you need to map a `Domain Event` to an `IntegrationEvent` and send it via `IMessageBus` from `Infrastructure Layer`. It uses `Azure Message Bus` so other `Microservices` can subscribe to it.
+### `Value Objects` (VO)
+Immutable objects compared by values. They can't be changed. If 2 value objects have the same values - they are equal. VO has no Id.
+### `Entities`
+An entity has an identifier. For instance a car can be an entity which is identified by its license plate. The difference with VO is if for example you change a car color from red to green it stays the same object with the same identifier. Color is VO in this case.
+### `Aggregate Roots`
+An Aggregate Root is an entity which encapsulates behavior for a cluster of entities, value objects. It combines them to a single indivisible object. It means if you delete an aggregate root all the child entities must be deleted as well. Only an Aggregate Root can be loaded from repository.
+### `Domain Events`
+A domain event is a response to commands from `Domain Layer`. Basically tou send commands to a software and it raises `Domain Events` mapped to `Integration Events` as a response. You can subscribe to these events to add more behavior. Ussualy `Domain Events` are used to communicate between different `Aggregate Roots` inside the same `Microservice`. It follows Open-Closed principle from Solid. If you need to publish a domain event outside of a `Microservice` you need to map a `Domain Event` to an `IntegrationEvent` and send it via `IMessageBus` from `Infrastructure Layer`. It uses `Azure Message Bus` so other `Microservices` can subscribe to it.
 
 Example of sending a `Domain Event` from an `Aggregate Root` (https://github.com/Alexander-Shein/BlogPostManagement/blob/main/src/BlogPostManagementService.Domain/BlogPosts/BlogPost.cs):
 ```csharp
