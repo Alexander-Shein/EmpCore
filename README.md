@@ -24,7 +24,7 @@ An entity has an identifier. For instance a car can be an entity which is identi
 ### `Aggregate Roots`
 An Aggregate Root is an entity which encapsulates behavior for a cluster of entities, value objects. It combines them to a single indivisible object. It means if you delete an aggregate root all the child entities must be deleted as well. Only an Aggregate Root can be loaded from repository.
 
-The `Aggregate Root` base class () holds `Domain Events`. `RaiseDomainEvent` method is used to add a new `Domain Event`.
+The `Aggregate Root` base class (https://github.com/Alexander-Shein/EmpCore/blob/main/src/Domain/EmpCore.Domain/AggregateRoot.cs) holds `Domain Events`. `RaiseDomainEvent` method is used to add a new `Domain Event`.
 
 There's a `ReplayDomainEvents` abstract method. This method must be implemented in derived classed when `Event Soursing` or `Event Streaming` is used to restore an `Aggregate Root` state.
 
