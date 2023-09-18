@@ -53,6 +53,26 @@ public class EmailAddress : SingleValueObject<string>
 
 ### `Entities`
 An entity has an identifier. For instance a car can be an entity which is identified by its license plate. The difference with VO is if for example you change a car color from red to green it stays the same object with the same identifier. Color is VO in this case.
+
+Entity example:
+```csharp
+public class Author : Entity<AuthorId>
+{
+    public EmailAddress FeedbackEmailAddress { get; private set; }
+
+    public static Result<Author> Create(AuthorId id, EmailAddress feedbackEmailAddress)
+    {
+        var author = new Author
+        {
+            Id = id ?? throw new ArgumentNullException(nameof(id)),
+            FeedbackEmailAddress = feedbackEmailAddress ?? throw new ArgumentNullException(nameof(feedbackEmailAddress))
+        };
+
+        return author;
+    }
+}
+```
+
 ### `Aggregate Roots`
 An Aggregate Root is an entity which encapsulates behavior for a cluster of entities, value objects. It combines them to a single indivisible object. It means if you delete an aggregate root all the child entities must be deleted as well. Only an Aggregate Root can be loaded from repository.
 
