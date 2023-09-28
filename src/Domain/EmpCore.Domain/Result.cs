@@ -1,5 +1,6 @@
 ﻿namespace EmpCore.Domain;
 
+[Serializable]
 public class Result
 {
     private const string FailureResultRequiresErrorMessage = "A failure result requires at least one error.";
@@ -57,6 +58,7 @@ public class Result
     public static implicit operator Result(Failure failure) => Fail(failure);
 }
 
+[Serializable]
 public class Result<T> : Result
 {
     private const string AccessValueInFailureResultMessage = "You attempted to access the Value property for a failure result. A failure result has no Value.";
